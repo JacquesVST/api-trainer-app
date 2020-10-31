@@ -1,0 +1,44 @@
+package com.jvst.api.instrutor.service;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.stereotype.Service;
+
+import com.jvst.api.instrutor.model.Instrutor;
+import com.jvst.api.instrutor.repository.InstrutorRepository;
+import com.jvst.api.usuario.model.Usuario;
+import com.jvst.api.usuario.service.UsuarioService;
+
+@Service
+public class InstrutorService {
+
+	@Autowired
+	private InstrutorRepository instrutorRepository;
+
+	@Autowired
+	private UsuarioService usuarioService;
+
+	public List<Instrutor> listarInstrutores() {
+		return this.instrutorRepository.findAll();
+	}
+
+	public Instrutor buscarInstrutorPorId(Long idInstrutor) {
+		Optional<Instrutor> instrutor = this.instrutorRepository.findById(idInstrutor);
+		if (!instrutor.isPresent()) {
+			throw new EmptyResultDataAccessException("Usuário não encontrado", 1);
+		}
+		return instrutor.get();
+	}
+
+	public Instrutor buscarInstrutorPorIdUsuario(Long idUsuario) {
+		Usuario usuario = this.usuarioService.buscarUsuarioPorId(idUsuario);
+		return this.instrutorRepository.findByUsuario(usuario);
+	}
+
+	public void salvarInstrutor(Instrutor instrutor) {
+		this.instrutorRepository.save(instrutor);
+	}
+}
