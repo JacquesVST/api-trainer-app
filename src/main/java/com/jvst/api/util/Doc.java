@@ -23,7 +23,7 @@ public class Doc {
 	public static final String PARAM_ID_SUFFIX3= " a ser excluído";
 	
 	public static final String PARAM_ENTIDADE_PREFIX = "Objeto de ";
-	public static final String PARAM_ENTIDADE_SUFFIX1 = " válido a ser cadastrado";
-	public static final String PARAM_ENTIDADE_SUFFIX2 = " válido a ser atulaizado";
+	public static final String PARAM_ENTIDADE_SUFFIX1 = " válido para cadastro";
+	public static final String PARAM_ENTIDADE_SUFFIX2 = " válido para atualização";
 	
 }

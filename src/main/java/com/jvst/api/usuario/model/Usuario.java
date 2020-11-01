@@ -50,6 +50,9 @@ public class Usuario {
 	@ApiModelProperty(value = "Data e Hora em que a conta foi criada, em formato de timestamp com fuso horário", example = "2020-10-28T20:09:54.919+00:00")
 	@Column(name = "data_cadastro")
 	private Timestamp dataCadastro;
+	
+	@ApiModelProperty(value = "Controla atividade do usuário para optimização do sistema")
+	private Boolean ativo;
 
 	public Long getId() {
 		return id;
@@ -99,4 +102,11 @@ public class Usuario {
 		this.dataCadastro = dataCadastro;
 	}
 
+	public Boolean getAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(Boolean ativo) {
+		this.ativo = ativo;
+	}
 }

@@ -24,7 +24,7 @@ public class Imagem {
 	@ApiModelProperty(value = "Dados da imagem em base64")
 	private String base64;
 
-	@ApiModelProperty(value = "URL da imagem no caso do uso de um repositório externo")
+	@ApiModelProperty(value = "URL da imagem no caso do uso de um repositório externo", example = "https://image.shutterstock.com/image-vector/default-ui-image-placeholder-wireframes-260nw-1037719192.jpg")
 	private String url;
 
 	@ApiModelProperty(hidden = true)

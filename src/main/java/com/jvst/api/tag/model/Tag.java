@@ -31,4 +31,30 @@ public class Tag {
 	@ApiModelProperty(value = "Cor para visualmente destacar a tag", example = "#fcba03")
 	@Size(max = 7, message = "limite de caracteres para cor excedido")
 	private String cor;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+	public String getCor() {
+		return cor;
+	}
+
+	public void setCor(String cor) {
+		this.cor = cor;
+	}
+	
+	
 }

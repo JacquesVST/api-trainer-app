@@ -7,10 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
+import com.jvst.api.imagem.service.ImagemService;
+import com.jvst.api.instrutor.form.InstrutorForm;
 import com.jvst.api.instrutor.model.Instrutor;
 import com.jvst.api.instrutor.repository.InstrutorRepository;
 import com.jvst.api.usuario.model.Usuario;
 import com.jvst.api.usuario.service.UsuarioService;
+import com.jvst.api.util.DataUtil;
 
 @Service
 public class InstrutorService {
@@ -21,6 +24,9 @@ public class InstrutorService {
 	@Autowired
 	private UsuarioService usuarioService;
 
+	@Autowired
+	private ImagemService imagemService;
+
 	public List<Instrutor> listarInstrutores() {
 		return this.instrutorRepository.findAll();
 	}
@@ -28,7 +34,7 @@ public class InstrutorService {
 	public Instrutor buscarInstrutorPorId(Long idInstrutor) {
 		Optional<Instrutor> instrutor = this.instrutorRepository.findById(idInstrutor);
 		if (!instrutor.isPresent()) {
-			throw new EmptyResultDataAccessException("Usuário não encontrado", 1);
+			throw new EmptyResultDataAccessException("Instrutor não encontrado", 1);
 		}
 		return instrutor.get();
 	}
@@ -38,7 +44,24 @@ public class InstrutorService {
 		return this.instrutorRepository.findByUsuario(usuario);
 	}
 
-	public void salvarInstrutor(Instrutor instrutor) {
+	public void cadastrarInstrutor(Long idUsuario, InstrutorForm instrutorForm) {
+		Instrutor instrutor = new Instrutor();
+		instrutor.setDataNascimento(DataUtil.dataStringParaTS(instrutorForm.getDataNascimento()));
+		instrutor.setNumeroContato(instrutorForm.getNumeroContato());
+		instrutor.setEmailContato(instrutorForm.getEmailContato());
+		instrutor.setLinkUsuario(instrutorForm.getLinkUsuario());
+		instrutor.setImagem(this.imagemService.buscarImagemPorId(instrutorForm.getIdImagem()));
+		instrutor.setUsuario(this.usuarioService.buscarUsuarioPorId(idUsuario));
+		this.instrutorRepository.save(instrutor);
+	}
+
+	public void atualizarInstrutor(Long idInstrutor, InstrutorForm instrutorForm) {
+		Instrutor instrutor = this.buscarInstrutorPorId(idInstrutor);
+		instrutor.setDataNascimento(DataUtil.dataStringParaTS(instrutorForm.getDataNascimento()));
+		instrutor.setNumeroContato(instrutorForm.getNumeroContato());
+		instrutor.setEmailContato(instrutorForm.getEmailContato());
+		instrutor.setLinkUsuario(instrutorForm.getLinkUsuario());
+		instrutor.setImagem(this.imagemService.buscarImagemPorId(instrutorForm.getIdImagem()));
 		this.instrutorRepository.save(instrutor);
 	}
 }

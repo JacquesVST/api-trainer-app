@@ -46,13 +46,13 @@ public class Aluno {
 	@Size(max = 50, message = "limite de caracteres para link usuario excedido")
 	private String linkUsuario;
 
-	@ApiModelProperty(value = "ID do usuário genérico")
+	@ApiModelProperty(value = "Usuário genérico")
 	@NotNull(message = "usuario não pode ser nulo")
 	@ManyToOne(targetEntity = Usuario.class)
 	@JoinColumn(name = "id_usuario")
 	private Usuario usuario;
 
-	@ApiModelProperty(value = "ID do imagem de perfil que será carregada pelo usuário")
+	@ApiModelProperty(value = "Imagem de perfil que será carregada pelo usuário")
 	@ManyToOne(targetEntity = Imagem.class)
 	@JoinColumn(name = "id_imagem")
 	private Imagem imagem;

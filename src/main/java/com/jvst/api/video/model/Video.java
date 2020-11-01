@@ -24,7 +24,7 @@ public class Video {
 	@ApiModelProperty(value = "Dados do vídeo em base64")
 	private String base64;
 
-	@ApiModelProperty(value = "URL do vídeo no caso do uso de um repositório externo")
+	@ApiModelProperty(value = "URL do vídeo no caso do uso de um repositório externo", example = "https://image.shutterstock.com/image-vector/default-ui-image-placeholder-wireframes-260nw-1037719192.jpg")
 	private String url;
 
 	@ApiModelProperty(hidden = true)
