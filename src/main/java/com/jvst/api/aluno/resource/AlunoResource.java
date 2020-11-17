@@ -60,4 +60,5 @@ public class AlunoResource {
 					+ Doc.PARAM_ENTIDADE_SUFFIX2) AlunoForm alunoForm) {
 		this.alunoService.atualizarAluno(idAluno, alunoForm);
 	}
+	
 }

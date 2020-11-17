@@ -2,10 +2,12 @@ package com.jvst.api.instrutor.form;
 
 import javax.validation.constraints.Size;
 
+import com.jvst.api.util.Doc;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
-@ApiModel(value = "InstrutorForm", description = "Modelo para cadastro e atualização dos dados do instrutor")
+@ApiModel(value = "InstrutorForm", description = Doc.FORM_DESC + "do instrutor")
 public class InstrutorForm {
 
 	@ApiModelProperty(value = "Data de nascimento para validações de idade", example = "1999-12-22T20:09:54.919+00:00")

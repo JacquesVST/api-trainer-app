@@ -8,10 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.jvst.api.mensagem.form.MensagemForm;
 import com.jvst.api.mensagem.model.Mensagem;
 import com.jvst.api.mensagem.service.MensagemService;
 import com.jvst.api.util.Doc;
@@ -41,19 +43,26 @@ public class MensagemResource {
 			+ "de chat da mensagem" + Doc.PARAM_ID_SUFFIX1, example = "1") Long idChat) {
 		return this.mensagemService.listarMensagemPorIdChat(idChat);
 	}
-	
+
 	@ApiOperation(value = Doc.LISTAR_PREFIX + "mensagens" + Doc.LISTAR_SUFFIX + "usuário")
 	@GetMapping("/usuario/{idUsuario}")
 	public List<Mensagem> listarMensagemPorIdUsuario(@PathVariable @ApiParam(value = Doc.PARAM_ID_PREFIX
-			+ "de usuário da mensagem" + Doc.PARAM_ID_SUFFIX1, example = "1") Long idUsuario){
+			+ "de usuário da mensagem" + Doc.PARAM_ID_SUFFIX1, example = "1") Long idUsuario) {
 		return this.mensagemService.listarMensagemPorIdUsuario(idUsuario);
 	}
-	
+
 	@ApiOperation(value = Doc.CADASTRAR_PREFIX + "uma nova mensagem" + Doc.CADASTRAR_SUFFIX)
 	@PostMapping
 	public void cadastrarMensagem(@RequestBody @Valid @ApiParam(value = Doc.PARAM_ENTIDADE_PREFIX + "mensagem"
-			+ Doc.PARAM_ENTIDADE_SUFFIX1) Mensagem mensagem) {
-		this.mensagemService.salvarMensagem(mensagem);
+			+ Doc.PARAM_ENTIDADE_SUFFIX1) MensagemForm mensagemForm) {
+		this.mensagemService.cadastrarMensagem(mensagemForm);
+	}
+
+	@ApiOperation(value = "Altera o status de visualização")
+	@PutMapping("/{idMensagem")
+	public void alterarVisualizacao(@PathVariable @ApiParam(value = Doc.PARAM_ID_PREFIX + "da mensagem"
+			+ Doc.PARAM_ID_SUFFIX2, example = "1") Long idMensagem) {
+		this.mensagemService.alterarVisualizacao(idMensagem);
 	}
 
 }

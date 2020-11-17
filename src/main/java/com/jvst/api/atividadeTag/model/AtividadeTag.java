@@ -32,12 +32,20 @@ public class AtividadeTag {
 	@ManyToOne(targetEntity = Atividade.class)
 	@JoinColumn(name = "id_atividade")
 	private Atividade atividade;
-	
+
 	@ApiModelProperty(value = "Tag")
 	@NotNull(message = "tag não pode ser nulo")
 	@ManyToOne(targetEntity = Tag.class)
 	@JoinColumn(name = "id-tag")
 	private Tag tag;
+
+	public AtividadeTag(Atividade atividade, Tag tag) {
+		this.atividade = atividade;
+		this.tag = tag;
+	}
+
+	public AtividadeTag() {
+	}
 
 	public Long getId() {
 		return id;
@@ -62,6 +70,5 @@ public class AtividadeTag {
 	public void setTag(Tag tag) {
 		this.tag = tag;
 	}
-	
-	
+
 }

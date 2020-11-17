@@ -11,8 +11,10 @@ import com.jvst.api.aluno.model.Aluno;
 import com.jvst.api.aluno.service.AlunoService;
 import com.jvst.api.aula.model.Aula;
 import com.jvst.api.aula.service.AulaService;
+import com.jvst.api.sessao.form.SessaoForm;
 import com.jvst.api.sessao.model.Sessao;
 import com.jvst.api.sessao.repository.SessaoRepository;
+import com.jvst.api.util.DataUtil;
 
 @Service
 public class SessaoService {
@@ -44,7 +46,13 @@ public class SessaoService {
 		return this.sessaoRepository.findByAluno(aluno);
 	}
 
-	public void salvarSessao(Sessao sessao) {
-		this.sessaoRepository.save(sessao);
+	public Sessao cadastrarSessao(SessaoForm sessaoForm) {
+		Sessao sessao = new Sessao();
+		sessao.setAluno(this.alunoService.buscarAlunoPorId(sessaoForm.getIdAluno()));
+		sessao.setAula(this.aulaService.buscarAulaPorId(sessaoForm.getIdAula()));
+		sessao.setInico(DataUtil.dataStringParaTS(sessaoForm.getInico()));
+		sessao.setFim(DataUtil.dataStringParaTS(sessaoForm.getFim()));
+		sessao.setObservacoes(sessaoForm.getObservacoes());
+		return this.sessaoRepository.save(sessao);
 	}
 }

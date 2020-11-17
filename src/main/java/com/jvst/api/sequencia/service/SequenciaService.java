@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
+import com.jvst.api.atividade.service.AtividadeService;
 import com.jvst.api.aula.model.Aula;
 import com.jvst.api.aula.service.AulaService;
+import com.jvst.api.sequencia.form.SequenciaForm;
 import com.jvst.api.sequencia.model.Sequencia;
 import com.jvst.api.sequencia.repository.SequenciaRepository;
 
@@ -20,6 +22,9 @@ public class SequenciaService {
 	
 	@Autowired
 	private AulaService aulaService;
+	
+	@Autowired
+	private AtividadeService atividadeService;
 	
 	public Sequencia buscarSequenciaPorId(Long idSequencia) {
 		Optional<Sequencia> sequencia = this.sequenciaRepository.findById(idSequencia);
@@ -33,8 +38,29 @@ public class SequenciaService {
 		Aula aula = this.aulaService.buscarAulaPorId(idAula);
 		return this.sequenciaRepository.findByAula(aula);
 	}
-
-	public void salvarSequencia(Sequencia sequencia) {
-		this.sequenciaRepository.save(sequencia);
+	
+	public Sequencia cadastrarSequencia(SequenciaForm sequenciaForm) {
+		Sequencia sequencia = new Sequencia();
+		sequencia.setDescricao(sequenciaForm.getDescricao());
+		sequencia.setTempo(sequenciaForm.getTempo());
+		sequencia.setRepoeticoes(sequenciaForm.getRepoeticoes());
+		sequencia.setSeries(sequenciaForm.getSeries());
+		sequencia.setOrdem(sequenciaForm.getOrdem());
+		sequencia.setAtividade(this.atividadeService.buscarAtividadePorId(sequenciaForm.getIdAtividade()));
+		sequencia.setAula(this.aulaService.buscarAulaPorId(sequenciaForm.getIdAula()));
+		return this.sequenciaRepository.save(sequencia);
 	}
+
+	public Sequencia atualizarSequencia(Long idSequencia, SequenciaForm sequenciaForm) {
+		Sequencia sequencia = this.buscarSequenciaPorId(idSequencia);
+		sequencia.setDescricao(sequenciaForm.getDescricao());
+		sequencia.setTempo(sequenciaForm.getTempo());
+		sequencia.setRepoeticoes(sequenciaForm.getRepoeticoes());
+		sequencia.setSeries(sequenciaForm.getSeries());
+		sequencia.setOrdem(sequenciaForm.getOrdem());
+		sequencia.setAtividade(this.atividadeService.buscarAtividadePorId(sequenciaForm.getIdAtividade()));
+		sequencia.setAula(this.aulaService.buscarAulaPorId(sequenciaForm.getIdAula()));
+		return this.sequenciaRepository.save(sequencia);
+	}
+
 }

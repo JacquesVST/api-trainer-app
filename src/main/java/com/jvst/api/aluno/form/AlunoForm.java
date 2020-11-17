@@ -2,10 +2,12 @@ package com.jvst.api.aluno.form;
 
 import javax.validation.constraints.Size;
 
+import com.jvst.api.util.Doc;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
-@ApiModel(value = "AlunoForm", description = "Modelo para cadastro e atualização dos dados do aluno")
+@ApiModel(value = "AlunoForm", description = Doc.FORM_DESC + "do aluno")
 public class AlunoForm {
 
 	@ApiModelProperty(value = "Data de nascimento para validações de idade", example = "22/12/1999")

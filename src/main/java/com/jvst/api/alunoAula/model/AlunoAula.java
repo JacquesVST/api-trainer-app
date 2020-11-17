@@ -41,10 +41,10 @@ public class AlunoAula {
 	@ManyToOne(targetEntity = Aula.class)
 	@JoinColumn(name = "id_aula")
 	private Aula aula;
-	
+
 	@ApiModelProperty(value = "Controla se o aluno tem acesso a aula", example = "false")
 	private Boolean disponivel;
-	
+
 	@ApiModelProperty(value = "Data e hora de cadastro da relação", example = "2020-10-10T20:09:54.919+00:00")
 	@NotNull(message = "data aquisicao não pode ser nulo")
 	@Column(name = "data_aquisicao")
@@ -66,11 +66,11 @@ public class AlunoAula {
 		this.aluno = aluno;
 	}
 
-	public Aula getAlua() {
+	public Aula getAula() {
 		return aula;
 	}
 
-	public void setAlua(Aula alua) {
+	public void setAula(Aula alua) {
 		this.aula = alua;
 	}
 
@@ -90,5 +90,4 @@ public class AlunoAula {
 		this.dataAquisicao = dataAquisicao;
 	}
 
-	
 }

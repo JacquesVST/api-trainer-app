@@ -8,10 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.jvst.api.aula.form.AulaForm;
 import com.jvst.api.aula.model.Aula;
 import com.jvst.api.aula.service.AulaService;
 import com.jvst.api.util.Doc;
@@ -45,8 +47,25 @@ public class AulaResource {
 	@ApiOperation(value = Doc.CADASTRAR_PREFIX + "uma nova aula" + Doc.CADASTRAR_SUFFIX)
 	@PostMapping
 	public void cadastrarAula(@RequestBody @Valid @ApiParam(value = Doc.PARAM_ENTIDADE_PREFIX + "aula"
-			+ Doc.PARAM_ENTIDADE_SUFFIX1) Aula aula) {
-		this.aulaService.salvarAula(aula);
+			+ Doc.PARAM_ENTIDADE_SUFFIX1) AulaForm aulaForm) {
+		this.aulaService.cadastrarAula(aulaForm);
+	}
+
+	@ApiOperation(value = Doc.ATUALIZAR_PREFIX + "uma nova aula" + Doc.ATUALIZAR_SUFFIX)
+	@PutMapping("/{idAula}")
+	public void atualizarAula(
+			@PathVariable @ApiParam(value = Doc.PARAM_ID_PREFIX + "da aula"
+					+ Doc.PARAM_ID_SUFFIX2, example = "1") Long idAula,
+			@RequestBody @Valid @ApiParam(value = Doc.PARAM_ENTIDADE_PREFIX + "aula"
+					+ Doc.PARAM_ENTIDADE_SUFFIX1) AulaForm aulaForm) {
+		this.aulaService.atualizarAula(idAula, aulaForm);
+	}
+
+	@ApiOperation(value = "Altera o acesso da aula para público ou privado")
+	@PutMapping("/acesso/{idAula}")
+	public void alterarAcessoAula(@PathVariable @ApiParam(value = Doc.PARAM_ID_PREFIX + "da aula"
+			+ Doc.PARAM_ID_SUFFIX2, example = "1") Long idAula) {
+		this.aulaService.alterarAcessoAula(idAula);
 	}
 
 }

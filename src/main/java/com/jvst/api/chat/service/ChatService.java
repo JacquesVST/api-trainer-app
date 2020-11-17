@@ -1,5 +1,7 @@
 package com.jvst.api.chat.service;
 
+import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.jvst.api.aluno.model.Aluno;
 import com.jvst.api.aluno.service.AlunoService;
+import com.jvst.api.chat.form.ChatForm;
 import com.jvst.api.chat.model.Chat;
 import com.jvst.api.chat.repository.ChatRepository;
 import com.jvst.api.instrutor.model.Instrutor;
@@ -44,7 +47,25 @@ public class ChatService {
 		return this.chatRepository.findByAluno(aluno);
 	}
 
-	public void salvarChat(Chat chat) {
-		this.chatRepository.save(chat);
+	public Chat cadastrarChat(ChatForm chatForm) {
+		Chat chat = new Chat();
+		chat.setAluno(alunoService.buscarAlunoPorId(chatForm.getIdAluno()));
+		chat.setInstrutor(instrutorService.buscarInstrutorPorId(chatForm.getIdInstrutor()));
+		chat.setInicio(Timestamp.from(Instant.now()));
+		chat.setExclusaoAluno(false);
+		chat.setExclusaoInstrutor(false);
+		return this.chatRepository.save(chat);
+	}
+
+	public Chat excluirParaAluno(Long idChat) {
+		Chat chat = this.buscarChatPorId(idChat);
+		chat.setExclusaoAluno(true);
+		return this.chatRepository.save(chat);
+	}
+
+	public Chat excluirParaInstrutor(Long idChat) {
+		Chat chat = this.buscarChatPorId(idChat);
+		chat.setExclusaoInstrutor(true);
+		return this.chatRepository.save(chat);
 	}
 }

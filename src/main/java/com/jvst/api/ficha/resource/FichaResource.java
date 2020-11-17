@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.jvst.api.ficha.form.FichaForm;
 import com.jvst.api.ficha.model.Ficha;
 import com.jvst.api.ficha.service.FichaService;
 import com.jvst.api.util.Doc;
@@ -34,18 +35,18 @@ public class FichaResource {
 			+ Doc.PARAM_ID_SUFFIX1, example = "1") Long idFicha) {
 		return this.fichaService.buscarFichaPorId(idFicha);
 	}
-	
+
 	@ApiOperation(value = Doc.LISTAR_PREFIX + "fichas" + Doc.LISTAR_SUFFIX + "aluno")
 	@GetMapping("/aluno/{idAluno}")
-	public List<Ficha> listarFichaPorIdAluno(@PathVariable @ApiParam(value = Doc.PARAM_ID_PREFIX
-			+ "de aluno da ficha" + Doc.PARAM_ID_SUFFIX1, example = "1") Long idAluno){
+	public List<Ficha> listarFichaPorIdAluno(@PathVariable @ApiParam(value = Doc.PARAM_ID_PREFIX + "de aluno da ficha"
+			+ Doc.PARAM_ID_SUFFIX1, example = "1") Long idAluno) {
 		return this.fichaService.listarFichaPorIdAluno(idAluno);
 	}
-	
+
 	@ApiOperation(value = Doc.CADASTRAR_PREFIX + "uma nova ficha" + Doc.CADASTRAR_SUFFIX)
 	@PostMapping
 	public void cadastrarFicha(@RequestBody @Valid @ApiParam(value = Doc.PARAM_ENTIDADE_PREFIX + "ficha"
-			+ Doc.PARAM_ENTIDADE_SUFFIX1) Ficha ficha) {
-		this.fichaService.salvarFicha(ficha);
+			+ Doc.PARAM_ENTIDADE_SUFFIX1) FichaForm fichaForm) {
+		this.fichaService.cadastrarFicha(fichaForm);
 	}
 }

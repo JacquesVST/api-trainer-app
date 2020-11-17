@@ -1,5 +1,7 @@
 package com.jvst.api.mensagem.service;
 
+import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.jvst.api.chat.model.Chat;
 import com.jvst.api.chat.service.ChatService;
+import com.jvst.api.mensagem.form.MensagemForm;
 import com.jvst.api.mensagem.model.Mensagem;
 import com.jvst.api.mensagem.repository.MensagemRepository;
 import com.jvst.api.usuario.model.Usuario;
@@ -44,8 +47,20 @@ public class MensagemService {
 		return this.mensagemRepository.findByUsuario(usuario);
 	}
 
-	public void salvarMensagem(Mensagem mensagem) {
-		this.mensagemRepository.save(mensagem);
+	public Mensagem cadastrarMensagem(MensagemForm mensagemForm) {
+		Mensagem mensagem = new Mensagem();
+		mensagem.setChat(this.chatService.buscarChatPorId(mensagemForm.getIdChat()));
+		mensagem.setUsuario(this.usuarioService.buscarUsuarioPorId(mensagemForm.getIdUsuario()));
+		mensagem.setConteudo(mensagemForm.getConteudo());
+		mensagem.setEnvio(Timestamp.from(Instant.now()));
+		mensagem.setVisualizado(null);
+		return this.mensagemRepository.save(mensagem);
+	}
+
+	public Mensagem alterarVisualizacao(Long idMensagem) {
+		Mensagem mensagem = this.buscarMensagemPorId(idMensagem);
+		mensagem.setVisualizado(
+				mensagem.getVisualizado().equals(null) ? Timestamp.from(Instant.now()) : mensagem.getVisualizado());
+		return this.mensagemRepository.save(mensagem);
 	}
 }
-

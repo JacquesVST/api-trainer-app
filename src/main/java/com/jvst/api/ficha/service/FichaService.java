@@ -1,5 +1,7 @@
 package com.jvst.api.ficha.service;
 
+import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 
@@ -9,18 +11,19 @@ import org.springframework.stereotype.Service;
 
 import com.jvst.api.aluno.model.Aluno;
 import com.jvst.api.aluno.service.AlunoService;
+import com.jvst.api.ficha.form.FichaForm;
 import com.jvst.api.ficha.model.Ficha;
 import com.jvst.api.ficha.repository.FichaRepository;
 
 @Service
 public class FichaService {
-	
+
 	@Autowired
 	private FichaRepository fichaRepository;
-	
+
 	@Autowired
 	private AlunoService alunoService;
-	
+
 	public Ficha buscarFichaPorId(Long idFicha) {
 		Optional<Ficha> ficha = this.fichaRepository.findById(idFicha);
 		if (!ficha.isPresent()) {
@@ -34,7 +37,11 @@ public class FichaService {
 		return this.fichaRepository.findByAluno(aluno);
 	}
 
-	public void salvarFicha(Ficha ficha) {
-		this.fichaRepository.save(ficha);
+	public Ficha cadastrarFicha(FichaForm fichaForm) {
+		Ficha ficha = new Ficha();
+		ficha.setAluno(this.alunoService.buscarAlunoPorId(fichaForm.getIdAluno()));
+		ficha.setData(Timestamp.from(Instant.now()));
+		ficha.setDetalhes(fichaForm.getDetalhes());
+		return this.fichaRepository.save(ficha);
 	}
 }

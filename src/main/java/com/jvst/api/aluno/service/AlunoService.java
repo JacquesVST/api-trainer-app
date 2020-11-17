@@ -39,22 +39,22 @@ public class AlunoService {
 		return this.alunoRepository.findByUsuario(usuario);
 	}
 
-	public Aluno cadastrarAluno(Long idUsuario, AlunoForm alunoFormEditar) {
+	public Aluno cadastrarAluno(Long idUsuario, AlunoForm alunoForm) {
 		Aluno aluno = new Aluno();
-		aluno.setDataNascimento(DataUtil.dataStringParaTS(alunoFormEditar.getDataNascimento()));
-		aluno.setNumeroContato(alunoFormEditar.getNumeroContato());
-		aluno.setLinkUsuario(alunoFormEditar.getLinkUsuario());
-		aluno.setImagem(this.imagemService.buscarImagemPorId(alunoFormEditar.getIdImagem()));
+		aluno.setDataNascimento(DataUtil.dataStringParaTS(alunoForm.getDataNascimento()));
+		aluno.setNumeroContato(alunoForm.getNumeroContato());
+		aluno.setLinkUsuario(alunoForm.getLinkUsuario());
+		aluno.setImagem(this.imagemService.buscarImagemPorId(alunoForm.getIdImagem()));
 		aluno.setUsuario(this.usuarioService.buscarUsuarioPorId(idUsuario));
 		return this.alunoRepository.save(aluno);
 	}
 
-	public Aluno atualizarAluno(Long idAluno, AlunoForm alunoFormEditar) {
+	public Aluno atualizarAluno(Long idAluno, AlunoForm alunoForm) {
 		Aluno aluno = this.buscarAlunoPorId(idAluno);
-		aluno.setDataNascimento(DataUtil.dataStringParaTS(alunoFormEditar.getDataNascimento()));
-		aluno.setNumeroContato(alunoFormEditar.getNumeroContato());
-		aluno.setLinkUsuario(alunoFormEditar.getLinkUsuario());
-		aluno.setImagem(this.imagemService.buscarImagemPorId(alunoFormEditar.getIdImagem()));
+		aluno.setDataNascimento(DataUtil.dataStringParaTS(alunoForm.getDataNascimento()));
+		aluno.setNumeroContato(alunoForm.getNumeroContato());
+		aluno.setLinkUsuario(alunoForm.getLinkUsuario());
+		aluno.setImagem(this.imagemService.buscarImagemPorId(alunoForm.getIdImagem()));
 		return this.alunoRepository.save(aluno);
 	}
 }

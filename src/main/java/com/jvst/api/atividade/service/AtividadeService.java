@@ -1,5 +1,7 @@
 package com.jvst.api.atividade.service;
 
+import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 
@@ -7,16 +9,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
+import com.jvst.api.atividade.form.AtividadeForm;
 import com.jvst.api.atividade.model.Atividade;
 import com.jvst.api.atividade.repository.AtividadeRepository;
 import com.jvst.api.instrutor.model.Instrutor;
 import com.jvst.api.instrutor.service.InstrutorService;
+import com.jvst.api.video.service.VideoService;
 
 @Service
 public class AtividadeService {
 
 	@Autowired
 	private AtividadeRepository atividadeRepository;
+	
+	@Autowired
+	private VideoService videoService;
 	
 	@Autowired
 	private InstrutorService instrutorService;
@@ -34,7 +41,23 @@ public class AtividadeService {
 		return this.atividadeRepository.findByInstrutor(instrutor);
 	}
 	
-	public void salvarAtividade(Atividade atividade) {
-		this.atividadeRepository.save(atividade);
+	public Atividade cadastrarAtividade(AtividadeForm atividadeForm) {
+		Atividade atividade = new Atividade();
+		atividade.setTitulo(atividadeForm.getTitulo());
+		atividade.setDescricao(atividadeForm.getDescricao());
+		atividade.setMaterial(atividadeForm.getMaterial());
+		atividade.setDataCadastro(Timestamp.from(Instant.now()));
+		atividade.setInstrutor(this.instrutorService.buscarInstrutorPorId(atividadeForm.getIdInstrutor()));
+		atividade.setVideo(this.videoService.buscarVideoPorId(atividadeForm.getIdVideo()));
+		return this.atividadeRepository.save(atividade);
+	}
+	
+	public Atividade atualizarAtividade(Long idAtividade, AtividadeForm atividadeForm) {
+		Atividade atividade = this.buscarAtividadePorId(idAtividade);
+		atividade.setTitulo(atividadeForm.getTitulo());
+		atividade.setDescricao(atividadeForm.getDescricao());
+		atividade.setMaterial(atividadeForm.getMaterial());
+		atividade.setVideo(this.videoService.buscarVideoPorId(atividadeForm.getIdVideo()));
+		return this.atividadeRepository.save(atividade);
 	}
 }
