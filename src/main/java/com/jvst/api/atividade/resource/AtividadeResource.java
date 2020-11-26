@@ -46,14 +46,14 @@ public class AtividadeResource {
 
 	@ApiOperation(value = Doc.CADASTRAR_PREFIX + "uma nova atividade" + Doc.CADASTRAR_SUFFIX)
 	@PostMapping
-	public void cadastrarAluno(@RequestBody @Valid @ApiParam(value = Doc.PARAM_ENTIDADE_PREFIX + "atividade"
+	public void cadastrarAtividade(@RequestBody @Valid @ApiParam(value = Doc.PARAM_ENTIDADE_PREFIX + "atividade"
 			+ Doc.PARAM_ENTIDADE_SUFFIX1) AtividadeForm atividadeForm) {
 		this.atividadeService.cadastrarAtividade(atividadeForm);
 	}
 
 	@ApiOperation(value = Doc.ATUALIZAR_PREFIX + "uma atividade" + Doc.ATUALIZAR_SUFFIX)
 	@PutMapping("/{idAtividade}")
-	public void atualizarAluno(
+	public void atualizarAtividade(
 			@PathVariable @ApiParam(value = Doc.PARAM_ID_PREFIX + "da atividade"
 					+ Doc.PARAM_ID_SUFFIX2, example = "1") Long idAtividade,
 			@RequestBody @Valid @ApiParam(value = Doc.PARAM_ENTIDADE_PREFIX + "atividade"

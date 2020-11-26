@@ -22,38 +22,38 @@ import lombok.Data;
 @Entity
 @Table(name = "sequencia")
 public class Sequencia {
-	
+
 	@ApiModelProperty(value = "ID da sequência", example = "1")
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@ApiModelProperty(value = "Tempo de repetição da atividade em segundos", example = "600")
 	private Integer tempo;
-	
+
 	@ApiModelProperty(value = "Vezes que a atividade será repetida em uma série", example = "10")
-	private Integer repoeticoes;
-	
+	private Integer repeticoes;
+
 	@ApiModelProperty(value = "Vezes que serão contadas as repetições", example = "3")
 	private Integer series;
-	
+
 	@ApiModelProperty(value = "Breve descrição da sequência, caso haja alguma consideração específica", example = "Sem descrição")
 	@NotNull(message = "descricao não pode ser nulo")
 	@Size(max = 300, message = "limite de caracteres para descricao excedido")
 	private String descricao;
-	
+
 	@ApiModelProperty(value = "Atividade a ser atribuída as especificações da sequência")
 	@NotNull(message = "atividade não pode ser nulo")
 	@ManyToOne(targetEntity = Atividade.class)
 	@JoinColumn(name = "id_atividade")
 	private Atividade atividade;
-	
+
 	@ApiModelProperty(value = "Aula da qual a sequência faz parte")
 	@NotNull(message = "aula não pode ser nulo")
 	@ManyToOne(targetEntity = Aula.class)
 	@JoinColumn(name = "id_aula")
 	private Aula aula;
-	
+
 	@ApiModelProperty(value = "Ordem da seqência na lista de sequências de uma aula", example = "1")
 	private Integer ordem;
 
@@ -73,12 +73,12 @@ public class Sequencia {
 		this.tempo = tempo;
 	}
 
-	public Integer getRepoeticoes() {
-		return repoeticoes;
+	public Integer getRepeticoes() {
+		return repeticoes;
 	}
 
-	public void setRepoeticoes(Integer repoeticoes) {
-		this.repoeticoes = repoeticoes;
+	public void setRepeticoes(Integer repeticoes) {
+		this.repeticoes = repeticoes;
 	}
 
 	public Integer getSeries() {
@@ -120,7 +120,5 @@ public class Sequencia {
 	public void setOrdem(Integer ordem) {
 		this.ordem = ordem;
 	}
-	
-	
-	
+
 }

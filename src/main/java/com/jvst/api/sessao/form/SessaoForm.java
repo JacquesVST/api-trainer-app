@@ -8,7 +8,7 @@ import com.jvst.api.util.Doc;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
-@ApiModel(value = "Sessao", description = Doc.FORM_DESC + "da sessao")
+@ApiModel(value = "SessaoForm", description = Doc.FORM_DESC + "da sessao")
 public class SessaoForm {
 
 	@ApiModelProperty(value = "Aluno que praticou a sessão")

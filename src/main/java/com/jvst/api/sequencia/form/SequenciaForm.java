@@ -13,7 +13,7 @@ public class SequenciaForm {
 	private Integer tempo;
 
 	@ApiModelProperty(value = "Vezes que a atividade será repetida em uma série", example = "10")
-	private Integer repoeticoes;
+	private Integer repeticoes;
 
 	@ApiModelProperty(value = "Vezes que serão contadas as repetições", example = "3")
 	private Integer series;
@@ -42,12 +42,12 @@ public class SequenciaForm {
 		this.tempo = tempo;
 	}
 
-	public Integer getRepoeticoes() {
-		return repoeticoes;
+	public Integer getRepeticoes() {
+		return repeticoes;
 	}
 
-	public void setRepoeticoes(Integer repoeticoes) {
-		this.repoeticoes = repoeticoes;
+	public void setRepeticoes(Integer repeticoes) {
+		this.repeticoes = repeticoes;
 	}
 
 	public Integer getSeries() {

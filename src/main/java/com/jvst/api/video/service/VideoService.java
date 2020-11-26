@@ -14,15 +14,15 @@ public class VideoService {
 
 	@Autowired
 	private VideoRepository videoRepository;
-	
+
 	public Video buscarVideoPorId(Long idVideo) {
 		Optional<Video> video = this.videoRepository.findById(idVideo);
 		if (!video.isPresent()) {
-			throw new EmptyResultDataAccessException("Video não encontrada", 1);
+			throw new EmptyResultDataAccessException("Video não encontrado", 1);
 		}
 		return video.get();
 	}
-	
+
 	public void salvarVideo(Video video) {
 		this.videoRepository.save(video);
 	}

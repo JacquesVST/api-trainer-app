@@ -51,7 +51,7 @@ public class InstrutorResource {
 	}
 
 	@ApiOperation(value = Doc.CADASTRAR_PREFIX + "um novo instrutor" + Doc.CADASTRAR_SUFFIX)
-	@PostMapping("/{idUsuario")
+	@PostMapping("/{idUsuario}")
 	public void cadastrarInstrutor(
 			@PathVariable @ApiParam(value = "ID de usuário a vincular com o instrutor", example = "1") Long idUsuario,
 			@RequestBody @Valid @ApiParam(value = Doc.PARAM_ENTIDADE_PREFIX + "instrutor"

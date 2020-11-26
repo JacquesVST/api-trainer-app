@@ -40,7 +40,7 @@ public class Atividade {
 	@NotNull(message = "descricao não pode ser nulo")
 	@Size(max = 300, message = "limite de caracteres para descricao excedido")
 	private String descricao;
-	
+
 	@ApiModelProperty(value = "Material recomendado a usar para a atividade", example = "Corda")
 	@NotNull(message = "material não pode ser nulo")
 	@Size(max = 300, message = "limite de caracteres para material excedido")
@@ -116,5 +116,11 @@ public class Atividade {
 	public void setDataCadastro(Timestamp dataCadastro) {
 		this.dataCadastro = dataCadastro;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "Atividade [id=" + id + ", titulo=" + titulo + ", descricao=" + descricao + ", material=" + material
+				+ ", video=" + video + ", instrutor=" + instrutor + ", dataCadastro=" + dataCadastro + "]";
+	}
+
 }

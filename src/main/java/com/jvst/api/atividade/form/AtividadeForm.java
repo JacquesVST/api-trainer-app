@@ -73,4 +73,10 @@ public class AtividadeForm {
 		this.idInstrutor = idInstrutor;
 	}
 
+	@Override
+	public String toString() {
+		return "AtividadeForm [titulo=" + titulo + ", descricao=" + descricao + ", material=" + material + ", idVideo="
+				+ idVideo + ", idInstrutor=" + idInstrutor + "]";
+	}
+
 }

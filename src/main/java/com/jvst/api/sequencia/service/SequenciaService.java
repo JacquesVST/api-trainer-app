@@ -19,13 +19,13 @@ public class SequenciaService {
 
 	@Autowired
 	private SequenciaRepository sequenciaRepository;
-	
+
 	@Autowired
 	private AulaService aulaService;
-	
+
 	@Autowired
 	private AtividadeService atividadeService;
-	
+
 	public Sequencia buscarSequenciaPorId(Long idSequencia) {
 		Optional<Sequencia> sequencia = this.sequenciaRepository.findById(idSequencia);
 		if (!sequencia.isPresent()) {
@@ -38,12 +38,12 @@ public class SequenciaService {
 		Aula aula = this.aulaService.buscarAulaPorId(idAula);
 		return this.sequenciaRepository.findByAula(aula);
 	}
-	
+
 	public Sequencia cadastrarSequencia(SequenciaForm sequenciaForm) {
 		Sequencia sequencia = new Sequencia();
 		sequencia.setDescricao(sequenciaForm.getDescricao());
 		sequencia.setTempo(sequenciaForm.getTempo());
-		sequencia.setRepoeticoes(sequenciaForm.getRepoeticoes());
+		sequencia.setRepeticoes(sequenciaForm.getRepeticoes());
 		sequencia.setSeries(sequenciaForm.getSeries());
 		sequencia.setOrdem(sequenciaForm.getOrdem());
 		sequencia.setAtividade(this.atividadeService.buscarAtividadePorId(sequenciaForm.getIdAtividade()));
@@ -55,7 +55,7 @@ public class SequenciaService {
 		Sequencia sequencia = this.buscarSequenciaPorId(idSequencia);
 		sequencia.setDescricao(sequenciaForm.getDescricao());
 		sequencia.setTempo(sequenciaForm.getTempo());
-		sequencia.setRepoeticoes(sequenciaForm.getRepoeticoes());
+		sequencia.setRepeticoes(sequenciaForm.getRepeticoes());
 		sequencia.setSeries(sequenciaForm.getSeries());
 		sequencia.setOrdem(sequenciaForm.getOrdem());
 		sequencia.setAtividade(this.atividadeService.buscarAtividadePorId(sequenciaForm.getIdAtividade()));

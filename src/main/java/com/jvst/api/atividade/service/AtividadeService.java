@@ -21,13 +21,13 @@ public class AtividadeService {
 
 	@Autowired
 	private AtividadeRepository atividadeRepository;
-	
+
 	@Autowired
 	private VideoService videoService;
-	
+
 	@Autowired
 	private InstrutorService instrutorService;
-	
+
 	public Atividade buscarAtividadePorId(Long idAtividade) {
 		Optional<Atividade> atividade = this.atividadeRepository.findById(idAtividade);
 		if (!atividade.isPresent()) {
@@ -35,13 +35,14 @@ public class AtividadeService {
 		}
 		return atividade.get();
 	}
-	
-	public List<Atividade> listarAtividadePorIdInstrutor(Long idInstrutor){
+
+	public List<Atividade> listarAtividadePorIdInstrutor(Long idInstrutor) {
 		Instrutor instrutor = this.instrutorService.buscarInstrutorPorId(idInstrutor);
 		return this.atividadeRepository.findByInstrutor(instrutor);
 	}
-	
+
 	public Atividade cadastrarAtividade(AtividadeForm atividadeForm) {
+		System.out.println(atividadeForm);
 		Atividade atividade = new Atividade();
 		atividade.setTitulo(atividadeForm.getTitulo());
 		atividade.setDescricao(atividadeForm.getDescricao());
@@ -49,9 +50,10 @@ public class AtividadeService {
 		atividade.setDataCadastro(Timestamp.from(Instant.now()));
 		atividade.setInstrutor(this.instrutorService.buscarInstrutorPorId(atividadeForm.getIdInstrutor()));
 		atividade.setVideo(this.videoService.buscarVideoPorId(atividadeForm.getIdVideo()));
+		System.out.println(atividade);
 		return this.atividadeRepository.save(atividade);
 	}
-	
+
 	public Atividade atualizarAtividade(Long idAtividade, AtividadeForm atividadeForm) {
 		Atividade atividade = this.buscarAtividadePorId(idAtividade);
 		atividade.setTitulo(atividadeForm.getTitulo());
