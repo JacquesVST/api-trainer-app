@@ -1,5 +1,6 @@
 package com.jvst.api.tag.service;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,11 +16,13 @@ public class TagService {
 
 	@Autowired
 	private TagRepository tagRepository;
-	
-	public List<Tag> listarTags(){
-		return this.tagRepository.findAll();
+
+	public List<Tag> listarTags() {
+		List<Tag> tags = this.tagRepository.findAll();
+		tags.sort(Comparator.comparing(Tag::getDescricao));
+		return tags;
 	}
-	
+
 	public Tag buscarTagPorId(Long idTag) {
 		Optional<Tag> tag = this.tagRepository.findById(idTag);
 		if (!tag.isPresent()) {
@@ -27,7 +30,7 @@ public class TagService {
 		}
 		return tag.get();
 	}
-	
+
 	public void salvarTag(Tag tag) {
 		this.tagRepository.save(tag);
 	}

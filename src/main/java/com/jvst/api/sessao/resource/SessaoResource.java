@@ -30,7 +30,7 @@ public class SessaoResource {
 	private SessaoService sessaoService;
 
 	@ApiOperation(value = Doc.BUSCAR_PREFIX + "a sessão" + Doc.BUSCAR_SUFFIX)
-	@GetMapping("/{idSessao")
+	@GetMapping("/{idSessao}")
 	public Sessao buscarSessaoPorId(@PathVariable @ApiParam(value = Doc.PARAM_ID_PREFIX + "da sessão"
 			+ Doc.PARAM_ID_SUFFIX1, example = "1") Long idSessao) {
 		return this.buscarSessaoPorId(idSessao);

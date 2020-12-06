@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.jvst.api.atividade.form.AtividadeForm;
 import com.jvst.api.atividade.model.Atividade;
 import com.jvst.api.atividade.repository.AtividadeRepository;
+import com.jvst.api.atividadeTag.service.AtividadeTagService;
 import com.jvst.api.instrutor.model.Instrutor;
 import com.jvst.api.instrutor.service.InstrutorService;
 import com.jvst.api.video.service.VideoService;
@@ -28,6 +29,9 @@ public class AtividadeService {
 	@Autowired
 	private InstrutorService instrutorService;
 
+	@Autowired
+	private AtividadeTagService atividadeTagService;
+
 	public Atividade buscarAtividadePorId(Long idAtividade) {
 		Optional<Atividade> atividade = this.atividadeRepository.findById(idAtividade);
 		if (!atividade.isPresent()) {
@@ -42,7 +46,6 @@ public class AtividadeService {
 	}
 
 	public Atividade cadastrarAtividade(AtividadeForm atividadeForm) {
-		System.out.println(atividadeForm);
 		Atividade atividade = new Atividade();
 		atividade.setTitulo(atividadeForm.getTitulo());
 		atividade.setDescricao(atividadeForm.getDescricao());
@@ -50,8 +53,9 @@ public class AtividadeService {
 		atividade.setDataCadastro(Timestamp.from(Instant.now()));
 		atividade.setInstrutor(this.instrutorService.buscarInstrutorPorId(atividadeForm.getIdInstrutor()));
 		atividade.setVideo(this.videoService.buscarVideoPorId(atividadeForm.getIdVideo()));
-		System.out.println(atividade);
-		return this.atividadeRepository.save(atividade);
+		Atividade atividadeCadastrada = this.atividadeRepository.save(atividade);
+		this.atividadeTagService.salvarVariasAtividadeTag(atividadeCadastrada.getId(), atividadeForm.getTags());
+		return atividadeCadastrada;
 	}
 
 	public Atividade atualizarAtividade(Long idAtividade, AtividadeForm atividadeForm) {

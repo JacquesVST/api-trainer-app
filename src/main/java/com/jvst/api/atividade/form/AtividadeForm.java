@@ -1,8 +1,11 @@
 package com.jvst.api.atividade.form;
 
+import java.util.List;
+
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.jvst.api.tag.model.Tag;
 import com.jvst.api.util.Doc;
 
 import io.swagger.annotations.ApiModel;
@@ -32,6 +35,8 @@ public class AtividadeForm {
 	@ApiModelProperty(value = "ID do instrutor que cadastrou a atividade")
 	@NotNull(message = "instrutor não pode ser nulo")
 	private Long idInstrutor;
+
+	private List<Tag> tags;
 
 	public String getTitulo() {
 		return titulo;
@@ -71,6 +76,14 @@ public class AtividadeForm {
 
 	public void setIdInstrutor(Long idInstrutor) {
 		this.idInstrutor = idInstrutor;
+	}
+
+	public List<Tag> getTags() {
+		return tags;
+	}
+
+	public void setTags(List<Tag> tags) {
+		this.tags = tags;
 	}
 
 	@Override

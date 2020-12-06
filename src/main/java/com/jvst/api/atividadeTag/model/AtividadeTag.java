@@ -36,7 +36,7 @@ public class AtividadeTag {
 	@ApiModelProperty(value = "Tag")
 	@NotNull(message = "tag não pode ser nulo")
 	@ManyToOne(targetEntity = Tag.class)
-	@JoinColumn(name = "id-tag")
+	@JoinColumn(name = "id_tag")
 	private Tag tag;
 
 	public AtividadeTag(Atividade atividade, Tag tag) {

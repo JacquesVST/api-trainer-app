@@ -59,7 +59,7 @@ public class MensagemResource {
 	}
 
 	@ApiOperation(value = "Altera o status de visualização")
-	@PutMapping("/{idMensagem")
+	@PutMapping("/{idMensagem}")
 	public void alterarVisualizacao(@PathVariable @ApiParam(value = Doc.PARAM_ID_PREFIX + "da mensagem"
 			+ Doc.PARAM_ID_SUFFIX2, example = "1") Long idMensagem) {
 		this.mensagemService.alterarVisualizacao(idMensagem);

@@ -62,7 +62,7 @@ public class AlunoAulaResource {
 	}
 
 	@ApiOperation(value = "Alterna para disponível/indisponível o status da aula para o aluno")
-	@PutMapping("/{idAlunoAula")
+	@PutMapping("/alterar/{idAlunoAula}")
 	public void alternarDisponibilidade(@PathVariable @ApiParam(value = Doc.PARAM_ID_PREFIX + "da relação aluno-aula"
 			+ Doc.PARAM_ID_SUFFIX2, example = "1") Long idAlunoAula) {
 		this.alunoAulaService.alternarDisponibiliade(idAlunoAula);

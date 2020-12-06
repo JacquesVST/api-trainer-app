@@ -3,6 +3,7 @@ package com.jvst.api.atividadeTag.service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -34,14 +35,17 @@ public class AtividadeTagService {
 		return atividadeTag.get();
 	}
 
-	public List<AtividadeTag> listarAtividadeTagPorIdAtividade(Long idAtividade) {
+	public List<Tag> listarTagsPorIdAtividade(Long idAtividade) {
 		Atividade atividade = this.atividadeService.buscarAtividadePorId(idAtividade);
-		return this.atividadeTagRepository.findByAtividade(atividade);
+		List<AtividadeTag> atividadeTags = this.atividadeTagRepository.findByAtividade(atividade);
+		return new ArrayList<Tag>(atividadeTags.stream().map(AtividadeTag::getTag).collect(Collectors.toSet()));
 	}
 
-	public List<AtividadeTag> listarAtividadeTagPorIdTag(Long idTag) {
+	public List<Atividade> listarAtividadesPorIdTag(Long idTag) {
 		Tag tag = this.tagService.buscarTagPorId(idTag);
-		return this.atividadeTagRepository.findByTag(tag);
+		List<AtividadeTag> atividadeTags = this.atividadeTagRepository.findByTag(tag);
+		return new ArrayList<Atividade>(
+				atividadeTags.stream().map(AtividadeTag::getAtividade).collect(Collectors.toSet()));
 	}
 
 	public AtividadeTag salvarAtividadeTag(AtividadeTag atividadeTag) {
