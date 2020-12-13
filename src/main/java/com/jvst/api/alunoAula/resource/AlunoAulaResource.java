@@ -65,7 +65,7 @@ public class AlunoAulaResource {
 	@PutMapping("/alterar/{idAlunoAula}")
 	public void alternarDisponibilidade(@PathVariable @ApiParam(value = Doc.PARAM_ID_PREFIX + "da relação aluno-aula"
 			+ Doc.PARAM_ID_SUFFIX2, example = "1") Long idAlunoAula) {
-		this.alunoAulaService.alternarDisponibiliade(idAlunoAula);
+		this.alunoAulaService.alternarDisponibilidade(idAlunoAula);
 	}
 
 }

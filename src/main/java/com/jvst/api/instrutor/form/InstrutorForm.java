@@ -13,11 +13,11 @@ public class InstrutorForm {
 	@ApiModelProperty(value = "Data de nascimento para validações de idade", example = "1999-12-22T20:09:54.919+00:00")
 	private String dataNascimento;
 
-	@ApiModelProperty(value = "Número de telefone vísivel no perfil do instrutor e no chat com o aluno", example = "018 98888-7777")
+	@ApiModelProperty(value = "Número de telefone visível no perfil do instrutor e no chat com o aluno", example = "018 98888-7777")
 	@Size(max = 14, message = "limite de caracteres para numero contato excedido")
 	private String numeroContato;
 
-	@ApiModelProperty(value = "E-mail vísivel no perfil do instrutor", example = "exemplo@exemplo.com")
+	@ApiModelProperty(value = "E-mail visível no perfil do instrutor", example = "exemplo@exemplo.com")
 	@Size(max = 320, message = "limite de caracteres para email contato excedido")
 	private String emailContato;
 

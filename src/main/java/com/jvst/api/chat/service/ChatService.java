@@ -47,25 +47,25 @@ public class ChatService {
 		return this.chatRepository.findByAluno(aluno);
 	}
 
-	public Chat cadastrarChat(ChatForm chatForm) {
+	public void cadastrarChat(ChatForm chatForm) {
 		Chat chat = new Chat();
 		chat.setAluno(alunoService.buscarAlunoPorId(chatForm.getIdAluno()));
 		chat.setInstrutor(instrutorService.buscarInstrutorPorId(chatForm.getIdInstrutor()));
 		chat.setInicio(Timestamp.from(Instant.now()));
 		chat.setExclusaoAluno(false);
 		chat.setExclusaoInstrutor(false);
-		return this.chatRepository.save(chat);
-	}
+        this.chatRepository.save(chat);
+    }
 
-	public Chat excluirParaAluno(Long idChat) {
+	public void excluirParaAluno(Long idChat) {
 		Chat chat = this.buscarChatPorId(idChat);
 		chat.setExclusaoAluno(true);
-		return this.chatRepository.save(chat);
-	}
+        this.chatRepository.save(chat);
+    }
 
-	public Chat excluirParaInstrutor(Long idChat) {
+	public void excluirParaInstrutor(Long idChat) {
 		Chat chat = this.buscarChatPorId(idChat);
 		chat.setExclusaoInstrutor(true);
-		return this.chatRepository.save(chat);
-	}
+        this.chatRepository.save(chat);
+    }
 }

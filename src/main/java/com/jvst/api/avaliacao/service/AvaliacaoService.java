@@ -29,7 +29,7 @@ public class AvaliacaoService {
 	@Autowired
 	private AulaService aulaService;
 
-	public Avaliacao buscarAvaliacaPorId(Long idAvaliacao) {
+	public Avaliacao buscarAvaliacaoPorId(Long idAvaliacao) {
 		Optional<Avaliacao> avaliacao = this.avaliacaoRepository.findById(idAvaliacao);
 		if (!avaliacao.isPresent()) {
 			throw new EmptyResultDataAccessException("Avaliação não encontrada", 1);
@@ -47,7 +47,7 @@ public class AvaliacaoService {
 		return this.avaliacaoRepository.findByAula(aula);
 	}
 
-	public Avaliacao cadastrarAvaliacao(AvaliacaoForm avaliacaoForm) {
+	public void cadastrarAvaliacao(AvaliacaoForm avaliacaoForm) {
 		Avaliacao avaliacao = new Avaliacao();
 		avaliacao.setTitulo(avaliacaoForm.getTitulo());
 		avaliacao.setConteudo(avaliacaoForm.getConteudo());
@@ -55,15 +55,15 @@ public class AvaliacaoService {
 		avaliacao.setDataHora(Timestamp.from(Instant.now()));
 		avaliacao.setAluno(this.alunoService.buscarAlunoPorId(avaliacaoForm.getIdAluno()));
 		avaliacao.setAula(this.aulaService.buscarAulaPorId(avaliacaoForm.getIdAula()));
-		return this.avaliacaoRepository.save(avaliacao);
+		this.avaliacaoRepository.save(avaliacao);
 	}
 
-	public Avaliacao atualizarAvaliacao(Long idAvaliacao, AvaliacaoForm avaliacaoForm) {
-		Avaliacao avaliacao = this.buscarAvaliacaPorId(idAvaliacao);
+	public void atualizarAvaliacao(Long idAvaliacao, AvaliacaoForm avaliacaoForm) {
+		Avaliacao avaliacao = this.buscarAvaliacaoPorId(idAvaliacao);
 		avaliacao.setTitulo(avaliacaoForm.getTitulo());
 		avaliacao.setConteudo(avaliacaoForm.getConteudo());
 		avaliacao.setNota(avaliacaoForm.getNota());
-		return this.avaliacaoRepository.save(avaliacao);
+		this.avaliacaoRepository.save(avaliacao);
 	}
 
 	public void excluirAvaliacao(Long idAvaliacao) {

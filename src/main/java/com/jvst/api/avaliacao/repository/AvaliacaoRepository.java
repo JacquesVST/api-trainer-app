@@ -10,7 +10,7 @@ import com.jvst.api.avaliacao.model.Avaliacao;
 
 public interface AvaliacaoRepository extends JpaRepository<Avaliacao, Long>{
 
-	public List<Avaliacao> findByAula(Aula aula);
+	List<Avaliacao> findByAula(Aula aula);
 	
-	public List<Avaliacao> findByAluno(Aluno aluno);
+	List<Avaliacao> findByAluno(Aluno aluno);
 }

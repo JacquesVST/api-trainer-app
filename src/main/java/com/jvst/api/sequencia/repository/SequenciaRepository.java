@@ -9,5 +9,5 @@ import com.jvst.api.sequencia.model.Sequencia;
 
 public interface SequenciaRepository extends JpaRepository<Sequencia, Long>{
 	
-	public List<Sequencia> findByAula(Aula aula);
+	List<Sequencia> findByAula(Aula aula);
 }

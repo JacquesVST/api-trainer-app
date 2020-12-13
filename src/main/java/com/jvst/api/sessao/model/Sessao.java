@@ -43,7 +43,7 @@ public class Sessao {
 	private Aula aula;
 
 	@ApiModelProperty(value = "Data e hora de inicio da aula", example = "2020-10-10T10:09:54.919+00:00")
-	private Timestamp inico;
+	private Timestamp inicio;
 
 	@ApiModelProperty(value = "Data e hora de término da aula", example = "2020-10-10T11:09:54.919+00:00")
 	private Timestamp fim;
@@ -77,12 +77,12 @@ public class Sessao {
 		this.aula = aula;
 	}
 
-	public Timestamp getInico() {
-		return inico;
+	public Timestamp getInicio() {
+		return inicio;
 	}
 
-	public void setInico(Timestamp inico) {
-		this.inico = inico;
+	public void setInicio(Timestamp inicio) {
+		this.inicio = inicio;
 	}
 
 	public Timestamp getFim() {

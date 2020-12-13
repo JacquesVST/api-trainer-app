@@ -10,7 +10,7 @@ import com.jvst.api.tag.model.Tag;
 
 public interface AtividadeTagRepository extends JpaRepository<AtividadeTag, Long>{
 
-	public List<AtividadeTag> findByAtividade(Atividade atividade);
+	List<AtividadeTag> findByAtividade(Atividade atividade);
 	
-	public List<AtividadeTag> findByTag(Tag tag);
+	List<AtividadeTag> findByTag(Tag tag);
 }

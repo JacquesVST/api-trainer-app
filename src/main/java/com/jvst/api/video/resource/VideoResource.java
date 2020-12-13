@@ -35,7 +35,7 @@ public class VideoResource {
 	
 	@ApiOperation(value = Doc.CADASTRAR_PREFIX + "um novo vídeo" + Doc.CADASTRAR_SUFFIX)
 	@PostMapping
-	public void acdastrarVideo(@RequestBody @Valid @ApiParam(value = Doc.PARAM_ENTIDADE_PREFIX + "vídeo"
+	public void cadastrarVideo(@RequestBody @Valid @ApiParam(value = Doc.PARAM_ENTIDADE_PREFIX + "vídeo"
 			+ Doc.PARAM_ENTIDADE_SUFFIX1) Video video) {
 		this.videoService.salvarVideo(video);
 	}

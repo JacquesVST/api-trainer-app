@@ -10,7 +10,7 @@ import com.jvst.api.usuario.model.Usuario;
 
 public interface MensagemRepository extends JpaRepository<Mensagem, Long>{
 
-	public List<Mensagem> findByChat(Chat chat);
+	List<Mensagem> findByChat(Chat chat);
 	
-	public List<Mensagem> findByUsuario(Usuario usuario);
+	List<Mensagem> findByUsuario(Usuario usuario);
 }

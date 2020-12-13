@@ -10,7 +10,7 @@ import com.jvst.api.aula.model.Aula;
 
 public interface AlunoAulaRepository extends JpaRepository<AlunoAula, Long> {
 
-	public List<AlunoAula> findByAluno(Aluno aluno);
+	List<AlunoAula> findByAluno(Aluno aluno);
 	
-	public List<AlunoAula> findByAula(Aula aula);
+	List<AlunoAula> findByAula(Aula aula);
 }

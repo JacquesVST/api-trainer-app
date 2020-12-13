@@ -35,7 +35,7 @@ public class AvaliacaoResource {
 	@GetMapping("/{idAvaliacao}")
 	public Avaliacao buscarAvaliacaoPorId(@PathVariable @ApiParam(value = Doc.PARAM_ID_PREFIX + "da avaliação"
 			+ Doc.PARAM_ID_SUFFIX1, example = "1") Long idAvaliacao) {
-		return this.avaliacaoService.buscarAvaliacaPorId(idAvaliacao);
+		return this.avaliacaoService.buscarAvaliacaoPorId(idAvaliacao);
 	}
 
 	@ApiOperation(value = Doc.LISTAR_PREFIX + "avaliações" + Doc.LISTAR_SUFFIX + "aluno")

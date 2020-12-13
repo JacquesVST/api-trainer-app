@@ -7,5 +7,5 @@ import com.jvst.api.usuario.model.Usuario;
 
 public interface AlunoRepository extends JpaRepository<Aluno, Long> {
 	
-	public Aluno findByUsuario(Usuario usuario);
+	Aluno findByUsuario(Usuario usuario);
 }

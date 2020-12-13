@@ -41,7 +41,7 @@ public class AulaService {
 		return this.aulaRepository.findByInstrutor(instrutor);
 	}
 
-	public Aula cadastrarAula(AulaForm aulaForm) {
+	public void cadastrarAula(AulaForm aulaForm) {
 		Aula aula = new Aula();
 		aula.setDataCadastro(Timestamp.from(Instant.now()));
 		aula.setDescricao(aulaForm.getDescricao());
@@ -49,22 +49,22 @@ public class AulaService {
 		aula.setPrivado(aulaForm.getPrivado());
 		aula.setInstrutor(instrutorService.buscarInstrutorPorId(aulaForm.getIdInstrutor()));
 		aula.setImagem(imagemService.buscarImagemPorId(aulaForm.getIdImagem()));
-		return this.aulaRepository.save(aula);
-	}
+        this.aulaRepository.save(aula);
+    }
 
-	public Aula atualizarAula(Long idAula, AulaForm aulaForm) {
+	public void atualizarAula(Long idAula, AulaForm aulaForm) {
 		Aula aula = this.buscarAulaPorId(idAula);
 		aula.setDescricao(aulaForm.getDescricao());
 		aula.setTitulo(aulaForm.getTitulo());
 		aula.setPrivado(aulaForm.getPrivado());
 		aula.setInstrutor(instrutorService.buscarInstrutorPorId(aulaForm.getIdInstrutor()));
 		aula.setImagem(imagemService.buscarImagemPorId(aulaForm.getIdImagem()));
-		return this.aulaRepository.save(aula);
-	}
+        this.aulaRepository.save(aula);
+    }
 
-	public Aula alterarAcessoAula(Long idAula) {
+	public void alterarAcessoAula(Long idAula) {
 		Aula aula = this.buscarAulaPorId(idAula);
 		aula.setPrivado(!aula.getPrivado());
-		return this.aulaRepository.save(aula);
-	}
+        this.aulaRepository.save(aula);
+    }
 }

@@ -9,5 +9,5 @@ import com.jvst.api.instrutor.model.Instrutor;
 
 public interface AtividadeRepository extends JpaRepository<Atividade, Long>{
 
-	public List<Atividade> findByInstrutor(Instrutor instrutor);
+	List<Atividade> findByInstrutor(Instrutor instrutor);
 }

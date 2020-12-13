@@ -10,7 +10,7 @@ import io.swagger.annotations.ApiModelProperty;
 @ApiModel(value = "ChatForm", description = Doc.FORM_DESC + "do chat")
 public class ChatForm {
 
-	@ApiModelProperty(value = "ID do isntrutor do chat")
+	@ApiModelProperty(value = "ID do instrutor do chat")
 	@NotNull(message = "instrutor não pode ser nulo")
 	private Long idInstrutor;
 

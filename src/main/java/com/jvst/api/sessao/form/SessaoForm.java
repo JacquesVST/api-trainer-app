@@ -20,7 +20,7 @@ public class SessaoForm {
 	private Long idAula;
 
 	@ApiModelProperty(value = "Data e hora de inicio da aula", example = "2020-10-10T10:09:54.919+00:00")
-	private String inico;
+	private String inicio;
 
 	@ApiModelProperty(value = "Data e hora de término da aula", example = "2020-10-10T11:09:54.919+00:00")
 	private String fim;
@@ -46,12 +46,12 @@ public class SessaoForm {
 		this.idAula = idAula;
 	}
 
-	public String getInico() {
-		return inico;
+	public String getInicio() {
+		return inicio;
 	}
 
-	public void setInico(String inico) {
-		this.inico = inico;
+	public void setInicio(String inicio) {
+		this.inicio = inicio;
 	}
 
 	public String getFim() {

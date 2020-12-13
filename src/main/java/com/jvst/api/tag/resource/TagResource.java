@@ -38,7 +38,7 @@ public class TagResource {
 	@GetMapping("/{idTag}")
 	public Tag buscarTagPorId(@PathVariable @ApiParam(value = Doc.PARAM_ID_PREFIX + "da tag"
 			+ Doc.PARAM_ID_SUFFIX1, example = "1") Long idTag) {
-		return this.buscarTagPorId(idTag);
+		return this.tagService.buscarTagPorId(idTag);
 	}
 
 	@ApiOperation(value = Doc.CADASTRAR_PREFIX + "uma nova tag" + Doc.CADASTRAR_SUFFIX)

@@ -37,11 +37,11 @@ public class FichaService {
 		return this.fichaRepository.findByAluno(aluno);
 	}
 
-	public Ficha cadastrarFicha(FichaForm fichaForm) {
+	public void cadastrarFicha(FichaForm fichaForm) {
 		Ficha ficha = new Ficha();
 		ficha.setAluno(this.alunoService.buscarAlunoPorId(fichaForm.getIdAluno()));
 		ficha.setData(Timestamp.from(Instant.now()));
 		ficha.setDetalhes(fichaForm.getDetalhes());
-		return this.fichaRepository.save(ficha);
-	}
+        this.fichaRepository.save(ficha);
+    }
 }

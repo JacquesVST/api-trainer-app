@@ -31,7 +31,7 @@ public class FichaResource {
 
 	@ApiOperation(value = Doc.BUSCAR_PREFIX + "a ficha" + Doc.BUSCAR_SUFFIX)
 	@GetMapping("/{idFicha}")
-	public Ficha bsucarFichaPorId(@PathVariable @ApiParam(value = Doc.PARAM_ID_PREFIX + "da ficha"
+	public Ficha buscarFichaPorId(@PathVariable @ApiParam(value = Doc.PARAM_ID_PREFIX + "da ficha"
 			+ Doc.PARAM_ID_SUFFIX1, example = "1") Long idFicha) {
 		return this.fichaService.buscarFichaPorId(idFicha);
 	}

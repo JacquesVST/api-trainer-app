@@ -47,13 +47,13 @@ public class AlunoAulaService {
 		return this.alunoAulaRepository.findByAula(aula);
 	}
 
-	public AlunoAula cadastraraAlunoAula(AlunoAulaForm alunoAulaForm) {
+	public void cadastraraAlunoAula(AlunoAulaForm alunoAulaForm) {
 		AlunoAula alunoAula = new AlunoAula();
 		alunoAula.setDisponivel(alunoAulaForm.getDisponivel());
 		alunoAula.setDataAquisicao(Timestamp.from(Instant.now()));
 		alunoAula.setAula(this.aulaService.buscarAulaPorId(alunoAulaForm.getIdAula()));
 		alunoAula.setAluno(this.alunoService.buscarAlunoPorId(alunoAulaForm.getIdAluno()));
-		return this.alunoAulaRepository.save(alunoAula);
+		this.alunoAulaRepository.save(alunoAula);
 	}
 
 	public AlunoAula atualizarAlunoAula(Long idAlunoAula, AlunoAulaForm alunoAulaForm) {
@@ -64,7 +64,7 @@ public class AlunoAulaService {
 		return this.alunoAulaRepository.save(alunoAula);
 	}
 
-	public void alternarDisponibiliade(Long idAlunoAula) {
+	public void alternarDisponibilidade(Long idAlunoAula) {
 		AlunoAula alunoAula = this.buscarAlunoAulaPorId(idAlunoAula);
 		alunoAula.setDisponivel(!alunoAula.getDisponivel());
 		this.alunoAulaRepository.save(alunoAula);

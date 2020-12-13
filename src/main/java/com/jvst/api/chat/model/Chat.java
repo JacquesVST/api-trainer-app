@@ -30,7 +30,7 @@ public class Chat {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@ApiModelProperty(value = "ID do isntrutor do chat")
+	@ApiModelProperty(value = "ID do instrutor do chat")
 	@NotNull(message = "instrutor não pode ser nulo")
 	@ManyToOne(targetEntity = Instrutor.class)
 	@JoinColumn(name = "id_instrutor")

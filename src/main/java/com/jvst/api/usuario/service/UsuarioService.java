@@ -43,7 +43,7 @@ public class UsuarioService {
 		return null;
 	}
 	
-	public Usuario cadastrarUsuario(UsuarioForm usuarioForm) {
+	public void cadastrarUsuario(UsuarioForm usuarioForm) {
 		if(this.usuarioRepository.findByEmail(usuarioForm.getEmail()).isPresent()) {
 			throw new DuplicateKeyException("E-mail já está em uso por outro usuário");
 		}
@@ -55,10 +55,10 @@ public class UsuarioService {
 		usuario.setUltimoNome(usuarioForm.getUltimoNome());
 		usuario.setDataCadastro(Timestamp.from(Instant.now()));
 		usuario.setAtivo(true);
-		return this.usuarioRepository.save(usuario);
-	}
+        this.usuarioRepository.save(usuario);
+    }
 	
-	public Usuario atualizarUsuario(Long idUsuario, UsuarioForm usuarioForm) {
+	public void atualizarUsuario(Long idUsuario, UsuarioForm usuarioForm) {
 		Optional<Usuario> usuarioPorEmail = this.usuarioRepository.findByEmail(usuarioForm.getEmail());
 		if(usuarioPorEmail.isPresent()) {
 			if(!usuarioPorEmail.get().getId().equals(idUsuario)) {
@@ -71,13 +71,13 @@ public class UsuarioService {
 		usuario.setSenha(usuarioForm.getSenha());
 		usuario.setPrimeiroNome(usuarioForm.getPrimeiroNome());
 		usuario.setUltimoNome(usuarioForm.getUltimoNome());
-		return this.usuarioRepository.save(usuario);
-	}
+        this.usuarioRepository.save(usuario);
+    }
 	
-	public Usuario alterarAtividade(Long idUsuario) {
+	public void alterarAtividade(Long idUsuario) {
 		Usuario usuario = this.buscarUsuarioPorId(idUsuario);
 		usuario.setAtivo(!usuario.getAtivo());
-		return this.usuarioRepository.save(usuario);
-	}
+        this.usuarioRepository.save(usuario);
+    }
 
 }

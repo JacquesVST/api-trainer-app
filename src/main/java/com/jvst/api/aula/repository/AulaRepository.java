@@ -9,5 +9,5 @@ import com.jvst.api.instrutor.model.Instrutor;
 
 public interface AulaRepository extends JpaRepository<Aula, Long>{
 
-	public List<Aula> findByInstrutor(Instrutor instrutor);
+	List<Aula> findByInstrutor(Instrutor instrutor);
 }

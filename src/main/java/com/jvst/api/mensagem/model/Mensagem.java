@@ -38,7 +38,7 @@ public class Mensagem {
 	@ApiModelProperty(value = "Data e hora de visualização da mensagem", example = "2020-10-21T20:00:54.919+00:00")
 	private Timestamp visualizado;
 
-	@ApiModelProperty(value = "ID do chat a que a menasagem pertence")
+	@ApiModelProperty(value = "ID do chat a que a mensagem pertence")
 	@NotNull(message = "chat não pode ser nulo")
 	@ManyToOne(targetEntity = Chat.class)
 	@JoinColumn(name = "id_chat")

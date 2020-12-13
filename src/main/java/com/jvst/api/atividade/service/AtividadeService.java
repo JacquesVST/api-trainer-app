@@ -45,7 +45,7 @@ public class AtividadeService {
 		return this.atividadeRepository.findByInstrutor(instrutor);
 	}
 
-	public Atividade cadastrarAtividade(AtividadeForm atividadeForm) {
+	public void cadastrarAtividade(AtividadeForm atividadeForm) {
 		Atividade atividade = new Atividade();
 		atividade.setTitulo(atividadeForm.getTitulo());
 		atividade.setDescricao(atividadeForm.getDescricao());
@@ -53,17 +53,16 @@ public class AtividadeService {
 		atividade.setDataCadastro(Timestamp.from(Instant.now()));
 		atividade.setInstrutor(this.instrutorService.buscarInstrutorPorId(atividadeForm.getIdInstrutor()));
 		atividade.setVideo(this.videoService.buscarVideoPorId(atividadeForm.getIdVideo()));
-		Atividade atividadeCadastrada = this.atividadeRepository.save(atividade);
-		this.atividadeTagService.salvarVariasAtividadeTag(atividadeCadastrada.getId(), atividadeForm.getTags());
-		return atividadeCadastrada;
+		Atividade atividadeSalva = this.atividadeRepository.save(atividade);
+		this.atividadeTagService.salvarVariasAtividadeTag(atividadeSalva.getId(), atividadeForm.getTags());
 	}
 
-	public Atividade atualizarAtividade(Long idAtividade, AtividadeForm atividadeForm) {
+	public void atualizarAtividade(Long idAtividade, AtividadeForm atividadeForm) {
 		Atividade atividade = this.buscarAtividadePorId(idAtividade);
 		atividade.setTitulo(atividadeForm.getTitulo());
 		atividade.setDescricao(atividadeForm.getDescricao());
 		atividade.setMaterial(atividadeForm.getMaterial());
 		atividade.setVideo(this.videoService.buscarVideoPorId(atividadeForm.getIdVideo()));
-		return this.atividadeRepository.save(atividade);
+		this.atividadeRepository.save(atividade);
 	}
 }

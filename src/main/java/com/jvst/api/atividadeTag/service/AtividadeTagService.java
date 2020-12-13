@@ -38,27 +38,26 @@ public class AtividadeTagService {
 	public List<Tag> listarTagsPorIdAtividade(Long idAtividade) {
 		Atividade atividade = this.atividadeService.buscarAtividadePorId(idAtividade);
 		List<AtividadeTag> atividadeTags = this.atividadeTagRepository.findByAtividade(atividade);
-		return new ArrayList<Tag>(atividadeTags.stream().map(AtividadeTag::getTag).collect(Collectors.toSet()));
+		return atividadeTags.stream().map(AtividadeTag::getTag).distinct().collect(Collectors.toList());
 	}
 
 	public List<Atividade> listarAtividadesPorIdTag(Long idTag) {
 		Tag tag = this.tagService.buscarTagPorId(idTag);
 		List<AtividadeTag> atividadeTags = this.atividadeTagRepository.findByTag(tag);
-		return new ArrayList<Atividade>(
-				atividadeTags.stream().map(AtividadeTag::getAtividade).collect(Collectors.toSet()));
+		return atividadeTags.stream().map(AtividadeTag::getAtividade).distinct().collect(Collectors.toList());
 	}
 
 	public AtividadeTag salvarAtividadeTag(AtividadeTag atividadeTag) {
 		return this.atividadeTagRepository.save(atividadeTag);
 	}
 
-	public List<AtividadeTag> salvarVariasAtividadeTag(Long idAtividade, List<Tag> tags) {
+	public void salvarVariasAtividadeTag(Long idAtividade, List<Tag> tags) {
 		Atividade atividade = this.atividadeService.buscarAtividadePorId(idAtividade);
-		List<AtividadeTag> atividadeTags = new ArrayList<AtividadeTag>();
+		List<AtividadeTag> atividadeTags = new ArrayList<>();
 		for (Tag tag : tags) {
 			atividadeTags.add(new AtividadeTag(atividade, tag));
 		}
-		return this.atividadeTagRepository.saveAll(atividadeTags);
+		this.atividadeTagRepository.saveAll(atividadeTags);
 	}
 
 }

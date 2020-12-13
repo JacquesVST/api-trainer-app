@@ -47,20 +47,20 @@ public class MensagemService {
 		return this.mensagemRepository.findByUsuario(usuario);
 	}
 
-	public Mensagem cadastrarMensagem(MensagemForm mensagemForm) {
+	public void cadastrarMensagem(MensagemForm mensagemForm) {
 		Mensagem mensagem = new Mensagem();
 		mensagem.setChat(this.chatService.buscarChatPorId(mensagemForm.getIdChat()));
 		mensagem.setUsuario(this.usuarioService.buscarUsuarioPorId(mensagemForm.getIdUsuario()));
 		mensagem.setConteudo(mensagemForm.getConteudo());
 		mensagem.setEnvio(Timestamp.from(Instant.now()));
 		mensagem.setVisualizado(null);
-		return this.mensagemRepository.save(mensagem);
+		this.mensagemRepository.save(mensagem);
 	}
 
-	public Mensagem alterarVisualizacao(Long idMensagem) {
+	public void alterarVisualizacao(Long idMensagem) {
 		Mensagem mensagem = this.buscarMensagemPorId(idMensagem);
 		mensagem.setVisualizado(
 				mensagem.getVisualizado().equals(null) ? Timestamp.from(Instant.now()) : mensagem.getVisualizado());
-		return this.mensagemRepository.save(mensagem);
+		this.mensagemRepository.save(mensagem);
 	}
 }

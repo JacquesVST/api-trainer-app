@@ -10,7 +10,7 @@ import com.jvst.api.sessao.model.Sessao;
 
 public interface SessaoRepository extends JpaRepository<Sessao, Long>{
 
-	public List<Sessao> findByAluno(Aluno aluno);
+	List<Sessao> findByAluno(Aluno aluno);
 	
-	public List<Sessao> findByAula(Aula aula);
+	List<Sessao> findByAula(Aula aula);
 }

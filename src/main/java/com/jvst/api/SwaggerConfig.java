@@ -30,7 +30,7 @@ public class SwaggerConfig {
 						new Tag("Aula", "Operações relativas as aulas criadas por instrutores"),
 						new Tag("Avaliação", "Operações relativas avaliações públicas das aulas publicadas"),
 						new Tag("Chat", "Operações relativas a chats entre instrutor e aluno"),
-						new Tag("Ficha", "Operações relativas a fichas que serão periódicamente preenchida pelo aluno para analisar progressões"),
+						new Tag("Ficha", "Operações relativas a fichas que serão periodicamente preenchida pelo aluno para analisar progressões"),
 						new Tag("Imagem", "Operações relativas as imagens enviadas no sistema"),
 						new Tag("Instrutor", "Operações relativas a usuários do tipo instrutor"),
 						new Tag("Mensagem", "Operações relativas a mensagens em chats"),
@@ -45,10 +45,9 @@ public class SwaggerConfig {
 	}
 
 	private ApiInfo metaInfo() {
-		ApiInfo apiInfo = new ApiInfo("API para aplicativo de personal trainer",
-				"Aplicação para sistema de aulas para personal trainer", "0.1", "Java - Spring Framework",
-				new Contact("Jacques", "http://t.me/jacquesvst", "jacquesvst@gmail.com"), "Licença Apache 2.0",
-				"https://www.apache.org/licenses/LICENSE-2.0", new ArrayList<>());
-		return apiInfo;
+        return new ApiInfo("API para aplicativo de personal trainer",
+                "Aplicação para sistema de aulas para personal trainer", "0.1", "Java - Spring Framework",
+                new Contact("Jacques", "http://t.me/jacquesvst", "jacquesvst@gmail.com"), "Licença Apache 2.0",
+                "https://www.apache.org/licenses/LICENSE-2.0", new ArrayList<>());
 	}
 }

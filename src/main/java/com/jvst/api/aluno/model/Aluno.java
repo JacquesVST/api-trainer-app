@@ -36,7 +36,7 @@ public class Aluno {
 	@Column(name = "data_nascimento")
 	private Timestamp dataNascimento;
 
-	@ApiModelProperty(value = "Número de telefone vísivel no perfil do aluno e no chat com o instrutor", example = "018 98888-7777")
+	@ApiModelProperty(value = "Número de telefone visível no perfil do aluno e no chat com o instrutor", example = "018 98888-7777")
 	@Column(name = "numero_contato")
 	@Size(max = 14, message = "limite de caracteres para numero contato excedido")
 	private String numeroContato;

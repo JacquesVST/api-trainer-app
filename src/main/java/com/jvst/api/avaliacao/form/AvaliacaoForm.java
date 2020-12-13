@@ -24,7 +24,7 @@ public class AvaliacaoForm {
 	@Size(max = 50, message = "limite de caracteres para titulo excedido")
 	private String titulo;
 
-	@ApiModelProperty(value = "Breve descrição da experiência do aluno", example = "Atendeu minhas espectativas a tempo")
+	@ApiModelProperty(value = "Breve descrição da experiência do aluno", example = "Atendeu minhas expectativas a tempo")
 	@NotNull(message = "conteudo não pode ser nulo")
 	@Size(max = 300, message = "limite de caracteres para conteudo excedido")
 	private String conteudo;

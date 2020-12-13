@@ -31,7 +31,7 @@ public class SequenciaForm {
 	@NotNull(message = "aula não pode ser nulo")
 	private Long idAula;
 
-	@ApiModelProperty(value = "Ordem da seqência na lista de sequências de uma aula", example = "1")
+	@ApiModelProperty(value = "Ordem da sequência na lista de sequências de uma aula", example = "1")
 	private Integer ordem;
 
 	public Integer getTempo() {

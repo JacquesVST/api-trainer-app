@@ -8,5 +8,5 @@ import com.jvst.api.aluno.model.Aluno;
 import com.jvst.api.ficha.model.Ficha;
 
 public interface FichaRepository extends JpaRepository<Ficha, Long> {
-	public List<Ficha> findByAluno(Aluno aluno);
+	List<Ficha> findByAluno(Aluno aluno);
 }

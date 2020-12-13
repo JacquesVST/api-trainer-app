@@ -7,5 +7,5 @@ import com.jvst.api.usuario.model.Usuario;
 
 public interface InstrutorRepository extends JpaRepository<Instrutor, Long> {
 
-	public Instrutor findByUsuario(Usuario usuario);
+	Instrutor findByUsuario(Usuario usuario);
 }

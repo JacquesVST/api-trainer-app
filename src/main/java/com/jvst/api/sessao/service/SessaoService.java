@@ -46,13 +46,13 @@ public class SessaoService {
 		return this.sessaoRepository.findByAluno(aluno);
 	}
 
-	public Sessao cadastrarSessao(SessaoForm sessaoForm) {
+	public void cadastrarSessao(SessaoForm sessaoForm) {
 		Sessao sessao = new Sessao();
 		sessao.setAluno(this.alunoService.buscarAlunoPorId(sessaoForm.getIdAluno()));
 		sessao.setAula(this.aulaService.buscarAulaPorId(sessaoForm.getIdAula()));
-		sessao.setInico(DataUtil.dataStringParaTS(sessaoForm.getInico()));
+		sessao.setInicio(DataUtil.dataStringParaTS(sessaoForm.getInicio()));
 		sessao.setFim(DataUtil.dataStringParaTS(sessaoForm.getFim()));
 		sessao.setObservacoes(sessaoForm.getObservacoes());
-		return this.sessaoRepository.save(sessao);
+		this.sessaoRepository.save(sessao);
 	}
 }

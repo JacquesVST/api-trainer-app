@@ -39,7 +39,7 @@ public class SequenciaService {
 		return this.sequenciaRepository.findByAula(aula);
 	}
 
-	public Sequencia cadastrarSequencia(SequenciaForm sequenciaForm) {
+	public void cadastrarSequencia(SequenciaForm sequenciaForm) {
 		Sequencia sequencia = new Sequencia();
 		sequencia.setDescricao(sequenciaForm.getDescricao());
 		sequencia.setTempo(sequenciaForm.getTempo());
@@ -48,10 +48,10 @@ public class SequenciaService {
 		sequencia.setOrdem(sequenciaForm.getOrdem());
 		sequencia.setAtividade(this.atividadeService.buscarAtividadePorId(sequenciaForm.getIdAtividade()));
 		sequencia.setAula(this.aulaService.buscarAulaPorId(sequenciaForm.getIdAula()));
-		return this.sequenciaRepository.save(sequencia);
-	}
+        this.sequenciaRepository.save(sequencia);
+    }
 
-	public Sequencia atualizarSequencia(Long idSequencia, SequenciaForm sequenciaForm) {
+	public void atualizarSequencia(Long idSequencia, SequenciaForm sequenciaForm) {
 		Sequencia sequencia = this.buscarSequenciaPorId(idSequencia);
 		sequencia.setDescricao(sequenciaForm.getDescricao());
 		sequencia.setTempo(sequenciaForm.getTempo());
@@ -60,7 +60,7 @@ public class SequenciaService {
 		sequencia.setOrdem(sequenciaForm.getOrdem());
 		sequencia.setAtividade(this.atividadeService.buscarAtividadePorId(sequenciaForm.getIdAtividade()));
 		sequencia.setAula(this.aulaService.buscarAulaPorId(sequenciaForm.getIdAula()));
-		return this.sequenciaRepository.save(sequencia);
-	}
+        this.sequenciaRepository.save(sequencia);
+    }
 
 }

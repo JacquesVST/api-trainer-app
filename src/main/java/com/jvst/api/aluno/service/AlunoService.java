@@ -39,22 +39,22 @@ public class AlunoService {
 		return this.alunoRepository.findByUsuario(usuario);
 	}
 
-	public Aluno cadastrarAluno(Long idUsuario, AlunoForm alunoForm) {
+	public void cadastrarAluno(Long idUsuario, AlunoForm alunoForm) {
 		Aluno aluno = new Aluno();
 		aluno.setDataNascimento(DataUtil.dataStringParaTS(alunoForm.getDataNascimento()));
 		aluno.setNumeroContato(alunoForm.getNumeroContato());
 		aluno.setLinkUsuario(alunoForm.getLinkUsuario());
 		aluno.setImagem(this.imagemService.buscarImagemPorId(alunoForm.getIdImagem()));
 		aluno.setUsuario(this.usuarioService.buscarUsuarioPorId(idUsuario));
-		return this.alunoRepository.save(aluno);
-	}
+        this.alunoRepository.save(aluno);
+    }
 
-	public Aluno atualizarAluno(Long idAluno, AlunoForm alunoForm) {
+	public void atualizarAluno(Long idAluno, AlunoForm alunoForm) {
 		Aluno aluno = this.buscarAlunoPorId(idAluno);
 		aluno.setDataNascimento(DataUtil.dataStringParaTS(alunoForm.getDataNascimento()));
 		aluno.setNumeroContato(alunoForm.getNumeroContato());
 		aluno.setLinkUsuario(alunoForm.getLinkUsuario());
 		aluno.setImagem(this.imagemService.buscarImagemPorId(alunoForm.getIdImagem()));
-		return this.alunoRepository.save(aluno);
-	}
+        this.alunoRepository.save(aluno);
+    }
 }

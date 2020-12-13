@@ -13,7 +13,7 @@ public class MensagemForm {
 	@ApiModelProperty(value = "Conteúdo da mensagem", example = "Hello world!")
 	private String conteudo;
 
-	@ApiModelProperty(value = "ID do chat a que a menasagem pertence")
+	@ApiModelProperty(value = "ID do chat a que a mensagem pertence")
 	@NotNull(message = "chat não pode ser nulo")
 	private Long idChat;
 

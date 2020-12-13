@@ -32,7 +32,7 @@ public class ChatResource {
 
 	@ApiOperation(value = Doc.BUSCAR_PREFIX + "o chat" + Doc.BUSCAR_SUFFIX)
 	@GetMapping("/{idChat}")
-	public Chat bsucarChatPorId(@PathVariable @ApiParam(value = Doc.PARAM_ID_PREFIX + "do chat"
+	public Chat buscarChatPorId(@PathVariable @ApiParam(value = Doc.PARAM_ID_PREFIX + "do chat"
 			+ Doc.PARAM_ID_SUFFIX1, example = "1") Long idChat) {
 		return this.chatService.buscarChatPorId(idChat);
 	}
