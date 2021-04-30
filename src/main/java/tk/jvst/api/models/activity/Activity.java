@@ -12,12 +12,13 @@ import javax.persistence.*;
 public class Activity {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Integer duration;
     private Integer repeats;
     private Integer sets;
     private String comments;
-    private Integer order;
+    private Integer sequentialOrder;
     @ManyToOne(targetEntity = Exercise.class)
     @JoinColumn(name = "exercise")
     private Exercise exercise;

@@ -1,8 +1,7 @@
 package tk.jvst.api.models.session;
 
 import lombok.Data;
-import tk.jvst.api.models.training.Training;
-import tk.jvst.api.models.user.User;
+import tk.jvst.api.models.user.UserLibrary;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -17,13 +16,10 @@ public class Session {
     private Long id;
     private Integer duration;
     private Timestamp start;
-    private Timestamp end;
+    private Timestamp finish;
     private String observations;
-    @ManyToOne(targetEntity = Training.class)
-    @JoinColumn(name = "training")
-    private Training training;
-    @ManyToOne(targetEntity = User.class)
-    @JoinColumn(name = "user")
-    private User user;
+    @ManyToOne(targetEntity = UserLibrary.class)
+    @JoinColumn(name = "userLibrary")
+    private UserLibrary userLibrary;
 
 }

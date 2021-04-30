@@ -17,7 +17,7 @@ public class ActivityController {
     private ActivityService activityService;
 
     @GetMapping
-    public Activity newActivity(){
+    public Activity newActivity() {
         return new Activity();
     }
 }

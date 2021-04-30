@@ -17,7 +17,7 @@ public class SessionController {
     private SessionService sessionService;
 
     @GetMapping
-    public Session newSession(){
+    public Session newSession() {
         return new Session();
     }
 }

@@ -23,34 +23,34 @@ public class UserController {
     private UserService userService;
 
     @PostMapping
-    public ResponseEntity<UserDTO> registerUser(@RequestBody UserRegisterDTO userRegisterDTO){
+    public ResponseEntity<UserDTO> registerUser(@RequestBody UserRegisterDTO userRegisterDTO) {
         return ResponseEntity.status(HttpStatus.CREATED).body(new UserDTO(userService.registerUser(userRegisterDTO)));
     }
 
     @PostMapping("/login")
-    public ResponseEntity<UserDTO> login(@RequestBody LoginDTO loginDTO){
+    public ResponseEntity<UserDTO> login(@RequestBody LoginDTO loginDTO) {
         UserDTO user = new UserDTO(userService.login(loginDTO));
         System.out.println(user);
         return ResponseEntity.status(HttpStatus.OK).body(user);
     }
 
     @PutMapping
-    public ResponseEntity<UserDTO> updateUser(@RequestBody UserUpdateDTO userUpdateDTO){
+    public ResponseEntity<UserDTO> updateUser(@RequestBody UserUpdateDTO userUpdateDTO) {
         return ResponseEntity.status(HttpStatus.OK).body(new UserDTO(userService.updateUser(userUpdateDTO)));
     }
 
     @GetMapping("/type/{type}")
-    public ResponseEntity<List<UserDTO>> getUserByType(@PathVariable UserType type){
+    public ResponseEntity<List<UserDTO>> getUserByType(@PathVariable UserType type) {
         return ResponseEntity.status(HttpStatus.OK).body(UserDTO.convertList(userService.findByType(type)));
     }
 
     @GetMapping("/toggle/{userId}")
-    public ResponseEntity<UserDTO> toggleUserActiveStatus (@PathVariable Long userId){
+    public ResponseEntity<UserDTO> toggleUserActiveStatus(@PathVariable Long userId) {
         return ResponseEntity.status(HttpStatus.OK).body(new UserDTO(userService.toggleUserActiveStatus(userId)));
     }
 
     @PostMapping("/check-username")
-    public ResponseEntity<Boolean> checkUsernameAvailability (@RequestBody String username){
+    public ResponseEntity<Boolean> checkUsernameAvailability(@RequestBody String username) {
         return ResponseEntity.status(HttpStatus.OK).body(userService.checkUsernameAvailability(username));
     }
 

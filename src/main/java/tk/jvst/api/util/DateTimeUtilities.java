@@ -12,7 +12,7 @@ public class DateTimeUtilities {
     }
 
     public static String timestampToStringDate(Timestamp date) {
-        if(date == null){
+        if (date == null) {
             return "";
         }
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");

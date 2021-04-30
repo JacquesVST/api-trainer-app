@@ -1,10 +1,13 @@
 package tk.jvst.api.models.exercise;
 
 import lombok.Data;
+import tk.jvst.api.models.image.Image;
+import tk.jvst.api.models.tag.Tag;
 import tk.jvst.api.models.user.User;
 import tk.jvst.api.models.video.Video;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Entity
@@ -23,5 +26,8 @@ public class Exercise {
     @ManyToOne(targetEntity = Video.class)
     @JoinColumn(name = "video")
     private Video video;
-
+    @ManyToMany(targetEntity = Image.class)
+    private List<Image> images;
+    @ManyToMany(targetEntity = Tag.class)
+    private List<Tag> tags;
 }

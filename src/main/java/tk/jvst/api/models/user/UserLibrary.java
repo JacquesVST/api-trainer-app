@@ -15,8 +15,8 @@ public class UserLibrary {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne(targetEntity = User.class)
-    @JoinColumn(name = "user")
-    private User user;
+    @JoinColumn(name = "endUser")
+    private User endUser;
     @ManyToOne(targetEntity = Training.class)
     @JoinColumn(name = "training")
     private Training training;
