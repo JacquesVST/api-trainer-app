@@ -21,6 +21,6 @@ public class TagController {
 
     @GetMapping
     public ResponseEntity<List<Tag>> getAllTags() {
-        return ResponseEntity.ok(this.tagService.getAllTags());
+        return ResponseEntity.ok(this.tagService.findAll());
     }
 }
