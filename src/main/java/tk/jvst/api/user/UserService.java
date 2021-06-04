@@ -1,0 +1,97 @@
+package tk.jvst.api.user;
+
+import com.google.common.base.Strings;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.stereotype.Service;
+import tk.jvst.api.generic.BaseRepository;
+import tk.jvst.api.generic.BaseService;
+import tk.jvst.api.user.dto.LoginDTO;
+import tk.jvst.api.user.dto.UserRegisterDTO;
+import tk.jvst.api.user.dto.UserUpdateDTO;
+import tk.jvst.api.util.DateTimeUtilities;
+import tk.jvst.api.util.HashUtils;
+import tk.jvst.api.util.literals.Validation;
+
+import java.util.List;
+import java.util.Optional;
+
+@Service
+public class UserService extends BaseService<User> {
+
+    public UserService(BaseRepository<User> repository) {
+        super(repository);
+    }
+
+    @Autowired
+    private UserRepository userRepository;
+
+    public User registerUser(UserRegisterDTO userRegisterDTO) {
+        if (userRepository.findByEmail(userRegisterDTO.getUsername()).isPresent()) {
+            throw new DuplicateKeyException(Validation.USERNAME_EXISTS);
+        }
+        if (userRepository.findByEmail(userRegisterDTO.getEmail()).isPresent()) {
+            throw new DuplicateKeyException(Validation.EMAIL_EXISTS);
+        }
+        User user = userRegisterDTO.safeConvert();
+        user.setPass(HashUtils.stringToSha256(user.getPass()));
+        user.setActive(true);
+        return save(user);
+    }
+
+    public User updateUser(UserUpdateDTO userUpdateDTO) {
+        if (userRepository.findByEmail(userUpdateDTO.getEmail()).isPresent()) {
+            throw new DuplicateKeyException(Validation.EMAIL_EXISTS);
+        }
+        User user = findById(userUpdateDTO.getId());
+
+        if (Strings.isNullOrEmpty(userUpdateDTO.getFirstName())) {
+            user.setFirstName(userUpdateDTO.getFirstName());
+        }
+
+        if (Strings.isNullOrEmpty(userUpdateDTO.getLastName())) {
+            user.setLastName(userUpdateDTO.getLastName());
+        }
+
+        if (Strings.isNullOrEmpty(userUpdateDTO.getEmail())) {
+            user.setEmail(userUpdateDTO.getEmail());
+        }
+
+        if (Strings.isNullOrEmpty(userUpdateDTO.getPhoneNumber())) {
+            user.setPhoneNumber(userUpdateDTO.getPhoneNumber());
+        }
+
+        if (Strings.isNullOrEmpty(userUpdateDTO.getBirth())) {
+            user.setBirth(DateTimeUtilities.stringDateToTimestamp(userUpdateDTO.getBirth()));
+        }
+
+        return save(user);
+    }
+
+    public User login(LoginDTO loginDTO) {
+        Optional<User> user = this.userRepository.findByUsername(loginDTO.getUsername());
+        if (user.isPresent()) {
+            if (HashUtils.stringToSha256(loginDTO.getPass()).equals(user.get().getPass())) {
+                return user.get();
+            }
+        } else {
+            throw new EmptyResultDataAccessException(1);
+        }
+        return null;
+    }
+
+    public User toggleUserActiveStatus(Long userId) {
+        User user = findById(userId);
+        user.setActive(!user.isActive());
+        return save(user);
+    }
+
+    public List<User> findByType(UserType type) {
+        return userRepository.findByType(type);
+    }
+
+    public Boolean checkUsernameAvailability(String username) {
+        return userRepository.findByUsername(username).isEmpty();
+    }
+}
