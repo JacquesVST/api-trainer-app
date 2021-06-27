@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import tk.jvst.api.generic.BaseRepository;
 import tk.jvst.api.generic.BaseService;
 import tk.jvst.api.user.dto.LoginDTO;
-import tk.jvst.api.user.dto.UserRegisterDTO;
+import tk.jvst.api.user.dto.UserRequestDTO;
 import tk.jvst.api.util.HashUtilities;
 import tk.jvst.api.util.literals.Validation;
 
@@ -23,14 +23,14 @@ public class UserService extends BaseService<User> {
     @Autowired
     private UserRepository userRepository;
 
-    public User registerUser(UserRegisterDTO userRegisterDTO) {
-        if (userRepository.findByEmail(userRegisterDTO.getUsername()).isPresent()) {
+    public User registerUser(UserRequestDTO userRequestDTO) {
+        if (userRepository.findByEmail(userRequestDTO.getUsername()).isPresent()) {
             throw new DuplicateKeyException(Validation.USERNAME_EXISTS);
         }
-        if (userRepository.findByEmail(userRegisterDTO.getEmail()).isPresent()) {
+        if (userRepository.findByEmail(userRequestDTO.getEmail()).isPresent()) {
             throw new DuplicateKeyException(Validation.EMAIL_EXISTS);
         }
-        User user = userRegisterDTO.safeConvert();
+        User user = userRequestDTO.toModel();
         user.setPass(HashUtilities.stringToSha256(user.getPass()));
         user.setActive(true);
         return save(user);

@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tk.jvst.api.user.dto.LoginDTO;
 import tk.jvst.api.user.dto.UserDTO;
-import tk.jvst.api.user.dto.UserRegisterDTO;
+import tk.jvst.api.user.dto.UserRequestDTO;
 
 import java.util.List;
 
@@ -25,8 +25,8 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<UserDTO> registerUser(@RequestBody UserRegisterDTO userRegisterDTO) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(new UserDTO(service.registerUser(userRegisterDTO)));
+    public ResponseEntity<UserDTO> registerUser(@RequestBody UserRequestDTO userRequestDTO) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(new UserDTO(service.registerUser(userRequestDTO)));
     }
 
     @PostMapping("/login")

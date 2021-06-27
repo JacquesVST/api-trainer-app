@@ -6,11 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import tk.jvst.api.user.User;
-import tk.jvst.api.user.UserService;
-import tk.jvst.api.user.dto.LoginDTO;
-import tk.jvst.api.user.dto.UserDTO;
-import tk.jvst.api.user.dto.UserRegisterDTO;
+import tk.jvst.api.library.dto.UserLibraryRequestDTO;
 
 import java.util.List;
 
@@ -27,4 +23,18 @@ public class UserLibraryController {
         return ResponseEntity.ok(service.findAll());
     }
 
+    @PostMapping
+    public ResponseEntity<UserLibrary> persistUserLibrary(@RequestBody UserLibraryRequestDTO userLibraryRequestDTO) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(service.persistUserLibrary(userLibraryRequestDTO));
+    }
+
+    @GetMapping("/user")
+    public ResponseEntity<List<UserLibrary>> findAllByUser(@RequestParam Long userId){
+        return ResponseEntity.ok(service.findAllByUser(userId));
+    }
+
+    @GetMapping("/training")
+    public ResponseEntity<List<UserLibrary>> findAllByTraining(@RequestParam Long trainingId){
+        return ResponseEntity.ok(service.findAllByTraining(trainingId));
+    }
 }
