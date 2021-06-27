@@ -25,12 +25,11 @@ public class SwaggerConfig {
                 .tags(
                         new Tag("Activity", Documentation.ACTIVITY_TAG_DESCRIPTION),
                         new Tag("Exercise", Documentation.EXERCISE_TAG_DESCRIPTION),
-                        new Tag("Image", Documentation.IMAGE_TAG_DESCRIPTION),
+                        new Tag("File", Documentation.FILE_TAG_DESCRIPTION),
                         new Tag("Session", Documentation.SESSION_TAG_DESCRIPTION),
                         new Tag("Tag", Documentation.TAG_TAG_DESCRIPTION),
                         new Tag("Training", Documentation.TRAINING_TAG_DESCRIPTION),
-                        new Tag("User", Documentation.USER_TAG_DESCRIPTION),
-                        new Tag("Video", Documentation.VIDEO_TAG_DESCRIPTION))
+                        new Tag("User", Documentation.USER_TAG_DESCRIPTION))
                 .apiInfo(metaInfo())
                 .directModelSubstitute(Timestamp.class, String.class);
     }

@@ -8,14 +8,19 @@ import tk.jvst.api.user.UserType;
 public class UserRegisterDTO {
 
     private String username;
+
     private String pass;
+
     private String firstName;
+
     private String lastName;
+
     private String email;
+
     private UserType type;
 
-    public User safeConvert(){
-        User user = new User();
+    public User safeConvert() {
+        User user = User.builder().build();
         user.setUsername(username);
         user.setPass(pass);
         user.setFirstName(firstName);

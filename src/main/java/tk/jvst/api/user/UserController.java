@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 import tk.jvst.api.user.dto.LoginDTO;
 import tk.jvst.api.user.dto.UserDTO;
 import tk.jvst.api.user.dto.UserRegisterDTO;
-import tk.jvst.api.user.dto.UserUpdateDTO;
 
 import java.util.List;
 
@@ -18,37 +17,27 @@ import java.util.List;
 public class UserController {
 
     @Autowired
-    private UserService userService;
+    private UserService service;
+
+    @GetMapping
+    public ResponseEntity<List<User>> findAll() {
+        return ResponseEntity.ok(service.findAll());
+    }
 
     @PostMapping
     public ResponseEntity<UserDTO> registerUser(@RequestBody UserRegisterDTO userRegisterDTO) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(new UserDTO(userService.registerUser(userRegisterDTO)));
+        return ResponseEntity.status(HttpStatus.CREATED).body(new UserDTO(service.registerUser(userRegisterDTO)));
     }
 
     @PostMapping("/login")
     public ResponseEntity<UserDTO> login(@RequestBody LoginDTO loginDTO) {
-        UserDTO user = new UserDTO(userService.login(loginDTO));
+        UserDTO user = new UserDTO(service.login(loginDTO));
         return ResponseEntity.status(HttpStatus.OK).body(user);
-    }
-
-    @PutMapping
-    public ResponseEntity<UserDTO> updateUser(@RequestBody UserUpdateDTO userUpdateDTO) {
-        return ResponseEntity.status(HttpStatus.OK).body(new UserDTO(userService.updateUser(userUpdateDTO)));
-    }
-
-    @GetMapping("/type/{type}")
-    public ResponseEntity<List<UserDTO>> getUserByType(@PathVariable UserType type) {
-        return ResponseEntity.status(HttpStatus.OK).body(UserDTO.convertList(userService.findByType(type)));
-    }
-
-    @GetMapping("/toggle/{userId}")
-    public ResponseEntity<UserDTO> toggleUserActiveStatus(@PathVariable Long userId) {
-        return ResponseEntity.status(HttpStatus.OK).body(new UserDTO(userService.toggleUserActiveStatus(userId)));
     }
 
     @PostMapping("/check-username")
     public ResponseEntity<Boolean> checkUsernameAvailability(@RequestBody String username) {
-        return ResponseEntity.status(HttpStatus.OK).body(userService.checkUsernameAvailability(username));
+        return ResponseEntity.status(HttpStatus.OK).body(service.checkUsernameAvailability(username));
     }
 
 }

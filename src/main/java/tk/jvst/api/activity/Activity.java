@@ -1,6 +1,9 @@
 package tk.jvst.api.activity;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 import tk.jvst.api.exercise.Exercise;
 import tk.jvst.api.generic.BaseEntity;
 import tk.jvst.api.training.Training;
@@ -10,6 +13,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+@NoArgsConstructor
+@EqualsAndHashCode(callSuper = true)
+@SuperBuilder
 @Data
 @Entity
 @Table(name = "activity")

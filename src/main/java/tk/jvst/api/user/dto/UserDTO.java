@@ -1,6 +1,7 @@
 package tk.jvst.api.user.dto;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import tk.jvst.api.user.User;
 import tk.jvst.api.user.UserType;
@@ -9,19 +10,29 @@ import tk.jvst.api.util.DateTimeUtilities;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Builder
 @Data
 @AllArgsConstructor
 public class UserDTO {
 
     private Long id;
+
     private String username;
+
     private String pass;
+
     private String firstName;
+
     private String lastName;
+
     private String email;
+
     private String phoneNumber;
+
     private String birth;
+
     private UserType type;
+
     private boolean active;
 
     public UserDTO(User user) {

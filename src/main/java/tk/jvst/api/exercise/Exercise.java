@@ -1,15 +1,20 @@
 package tk.jvst.api.exercise;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
+import tk.jvst.api.file.File;
 import tk.jvst.api.generic.BaseEntity;
-import tk.jvst.api.image.Image;
 import tk.jvst.api.tag.Tag;
 import tk.jvst.api.user.User;
-import tk.jvst.api.video.Video;
 
 import javax.persistence.*;
 import java.util.List;
 
+@NoArgsConstructor
+@EqualsAndHashCode(callSuper = true)
+@SuperBuilder
 @Data
 @Entity
 @Table(name = "exercise")
@@ -21,11 +26,8 @@ public class Exercise extends BaseEntity {
     @ManyToOne(targetEntity = User.class)
     @JoinColumn(name = "creator")
     private User creator;
-    @ManyToOne(targetEntity = Video.class)
-    @JoinColumn(name = "video")
-    private Video video;
-    @ManyToMany(targetEntity = Image.class)
-    private List<Image> images;
+    @ManyToMany(targetEntity = File.class)
+    private List<File> files;
     @ManyToMany(targetEntity = Tag.class)
     private List<Tag> tags;
 }
