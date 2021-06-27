@@ -1,6 +1,8 @@
-package tk.jvst.api.user;
+package tk.jvst.api.library;
 
 import tk.jvst.api.generic.BaseRepository;
+import tk.jvst.api.library.UserLibrary;
+import tk.jvst.api.user.User;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package tk.jvst.api.user;
+package tk.jvst.api.library;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 import tk.jvst.api.generic.BaseEntity;
 import tk.jvst.api.training.Training;
+import tk.jvst.api.user.User;
 
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;

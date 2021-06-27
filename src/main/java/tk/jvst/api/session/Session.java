@@ -5,7 +5,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 import tk.jvst.api.generic.BaseEntity;
-import tk.jvst.api.user.UserLibrary;
+import tk.jvst.api.library.UserLibrary;
 
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;

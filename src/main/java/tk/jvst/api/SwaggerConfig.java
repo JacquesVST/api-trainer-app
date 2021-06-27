@@ -29,7 +29,8 @@ public class SwaggerConfig {
                         new Tag("Session", Documentation.SESSION_TAG_DESCRIPTION),
                         new Tag("Tag", Documentation.TAG_TAG_DESCRIPTION),
                         new Tag("Training", Documentation.TRAINING_TAG_DESCRIPTION),
-                        new Tag("User", Documentation.USER_TAG_DESCRIPTION))
+                        new Tag("User", Documentation.USER_TAG_DESCRIPTION),
+                        new Tag("User Library", Documentation.USER_LIBRARY_TAG_DESCRIPTION))
                 .apiInfo(metaInfo())
                 .directModelSubstitute(Timestamp.class, String.class);
     }
