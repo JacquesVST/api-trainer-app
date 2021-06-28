@@ -23,7 +23,7 @@ import java.sql.Timestamp;
 public class UserLibrary extends BaseEntity {
 
     @ManyToOne(targetEntity = User.class)
-    @JoinColumn(name = "endUser")
+    @JoinColumn(name = "end_user")
     private User endUser;
 
     @ManyToOne(targetEntity = Training.class)

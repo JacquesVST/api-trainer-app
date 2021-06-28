@@ -18,14 +18,14 @@ public class ExerciseController {
     private ExerciseService service;
 
     @GetMapping("/creator")
-    public ResponseEntity<List<Exercise>> findAllExercisesByCreator(@RequestParam Long id) {
-        List<Exercise> exercises = service.findAllExercisesByCreator(id);
+    public ResponseEntity<List<Exercise>> findAllExercisesByCreator(@RequestParam Long creatorId) {
+        List<Exercise> exercises = service.findAllExercisesByCreator(creatorId);
         return ResponseEntity.ok(exercises);
     }
 
     @GetMapping
-    public ResponseEntity<Exercise> findExerciseById(@RequestParam Long id) {
-        Exercise exercise = service.findById(id);
+    public ResponseEntity<Exercise> findExerciseById(@RequestParam Long exerciseId) {
+        Exercise exercise = service.findById(exerciseId);
         return ResponseEntity.ok(exercise);
     }
 

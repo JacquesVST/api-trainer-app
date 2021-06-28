@@ -17,6 +17,11 @@ public class FileController {
     @Autowired
     private FileService service;
 
+    @GetMapping()
+    public ResponseEntity<File> findAllImages(@RequestParam Long fileId) {
+        return ResponseEntity.ok().body(service.findById(fileId));
+    }
+
     @GetMapping("/images")
     public ResponseEntity<List<File>> findAllImages() {
         return ResponseEntity.ok().body(service.findAllByType(FileTypes.IMAGES));

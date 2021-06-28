@@ -25,8 +25,8 @@ public class TrainingController {
     }
 
     @GetMapping
-    public ResponseEntity<Training> findTrainingById(@RequestParam Long id) {
-        Training training = this.trainingService.findById(id);
+    public ResponseEntity<Training> findTrainingById(@RequestParam Long trainingId) {
+        Training training = this.trainingService.findById(trainingId);
         return ResponseEntity.ok(training);
     }
 
