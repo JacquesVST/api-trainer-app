@@ -25,8 +25,8 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<UserDTO> registerUser(@RequestBody UserRequestDTO userRequestDTO) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(new UserDTO(service.registerUser(userRequestDTO)));
+    public ResponseEntity<User> registerUser(@RequestBody UserRequestDTO userRequestDTO) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(service.registerUser(userRequestDTO));
     }
 
     @PostMapping("/login")
