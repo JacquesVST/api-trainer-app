@@ -18,6 +18,11 @@ public class ActivityController {
     public ActivityService service;
 
     @GetMapping
+    public ResponseEntity<Activity> getActivityById(@RequestParam Long activityId) {
+        return ResponseEntity.ok(service.findById(activityId));
+    }
+
+    @GetMapping("/training")
     public ResponseEntity<List<Activity>> getActivitiesByTraining(@RequestParam Long trainingId) {
         return ResponseEntity.ok(service.findAllByTraining(trainingId));
     }
