@@ -10,5 +10,4 @@ public interface ExerciseRepository extends BaseRepository<Exercise> {
 
     List<Exercise> findAllByCreator(User creator);
 
-    Optional<Exercise> findByCreatorAndTitle(User creator, String title);
 }

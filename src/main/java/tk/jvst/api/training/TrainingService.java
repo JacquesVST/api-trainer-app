@@ -5,12 +5,14 @@ import org.springframework.stereotype.Service;
 import tk.jvst.api.file.FileService;
 import tk.jvst.api.generic.BaseRepository;
 import tk.jvst.api.generic.BaseService;
+import tk.jvst.api.tag.TagService;
 import tk.jvst.api.training.dto.TrainingRequestDTO;
 import tk.jvst.api.user.User;
 import tk.jvst.api.user.UserService;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Service
 public class TrainingService extends BaseService<Training> {
@@ -26,6 +28,9 @@ public class TrainingService extends BaseService<Training> {
     private FileService fileService;
 
     @Autowired
+    private TagService tagService;
+
+    @Autowired
     private UserService userService;
 
     @Override
@@ -34,6 +39,7 @@ public class TrainingService extends BaseService<Training> {
         if (Objects.nonNull(obj.getPicture())) {
             obj.setPicture(fileService.findById(obj.getPicture().getId()));
         }
+        obj.setTags((obj.getTags().stream().map(tag -> tagService.findById(tag.getId())).collect(Collectors.toList())));
         return obj;
     }
 
