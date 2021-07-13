@@ -24,6 +24,12 @@ public class TrainingController {
         return ResponseEntity.ok(trainings);
     }
 
+    @GetMapping("/all")
+    public ResponseEntity<List<Training>> findAll() {
+        List<Training> trainings = this.trainingService.findAll();
+        return ResponseEntity.ok(trainings);
+    }
+
     @GetMapping
     public ResponseEntity<Training> findTrainingById(@RequestParam Long trainingId) {
         Training training = this.trainingService.findById(trainingId);
