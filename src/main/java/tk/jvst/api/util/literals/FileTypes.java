@@ -6,8 +6,15 @@ import java.util.Set;
 
 public class FileTypes {
 
-    public static final Set<String> IMAGES = new HashSet<>(Arrays.asList("png", "jpg", "jpeg", "gif"));
+    private FileTypes() {
+    }
 
-    public static final Set<String> VIDEOS = new HashSet<>(Arrays.asList("mp4", "wmv", "mkv", "gif"));
+    public static Set<String> getImageTypes() {
+        return new HashSet<>(Arrays.asList("png", "jpg", "jpeg", "gif"));
+    }
+
+    public static Set<String> getVideoTypes() {
+        return new HashSet<>(Arrays.asList("mp4", "wmv", "mkv", "gif"));
+    }
 
 }

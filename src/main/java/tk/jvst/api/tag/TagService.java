@@ -8,8 +8,6 @@ import tk.jvst.api.generic.BaseRepository;
 import tk.jvst.api.generic.BaseService;
 import tk.jvst.api.util.literals.Validation;
 
-import java.util.Optional;
-
 @Service
 public class TagService extends BaseService<Tag> {
 

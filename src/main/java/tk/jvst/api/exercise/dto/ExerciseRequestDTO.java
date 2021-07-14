@@ -26,12 +26,12 @@ public class ExerciseRequestDTO {
     public Exercise toModel() {
         List<File> files = new ArrayList<>();
         if(Objects.nonNull(fileIds)){
-            files = fileIds.stream().map(id -> File.builder().id(id).build()).collect(Collectors.toList());
+            files = fileIds.stream().map(fileId -> File.builder().id(fileId).build()).collect(Collectors.toList());
         }
 
         List<Tag> tags = new ArrayList<>();
         if(Objects.nonNull(tagIds)){
-            tags = tagIds.stream().map(id -> Tag.builder().id(id).build()).collect(Collectors.toList());
+            tags = tagIds.stream().map(tagId -> Tag.builder().id(tagId).build()).collect(Collectors.toList());
         }
 
         return Exercise.builder()

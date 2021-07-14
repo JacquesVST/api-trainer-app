@@ -6,7 +6,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tk.jvst.api.user.dto.LoginDTO;
-import tk.jvst.api.user.dto.UserDTO;
 import tk.jvst.api.user.dto.UserRequestDTO;
 
 import java.util.List;
@@ -30,8 +29,8 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<UserDTO> login(@RequestBody LoginDTO loginDTO) {
-        UserDTO user = new UserDTO(service.login(loginDTO));
+    public ResponseEntity<User> login(@RequestBody LoginDTO loginDTO) {
+        User user = service.login(loginDTO);
         return ResponseEntity.status(HttpStatus.OK).body(user);
     }
 

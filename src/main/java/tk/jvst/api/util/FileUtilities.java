@@ -9,6 +9,9 @@ import java.util.Random;
 
 public class FileUtilities {
 
+    private FileUtilities() {
+    }
+
     public static String generateFileName() {
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
@@ -18,8 +21,8 @@ public class FileUtilities {
     }
 
     public static String getExtensionFromFilename(String filename) {
-        if (!Strings.isNullOrEmpty(filename) && filename.contains(".")){
-             return filename.substring(filename.lastIndexOf(".") + 1);
+        if (!Strings.isNullOrEmpty(filename) && filename.contains(".")) {
+            return filename.substring(filename.lastIndexOf(".") + 1);
         }
         return null;
     }

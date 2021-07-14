@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import tk.jvst.api.exercise.Exercise;
 import tk.jvst.api.training.dto.TrainingRequestDTO;
 
 import java.util.List;
@@ -25,8 +24,8 @@ public class TrainingController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<List<Training>> findAll() {
-        List<Training> trainings = this.trainingService.findAll();
+    public ResponseEntity<List<Training>> findAllPublic() {
+        List<Training> trainings = this.trainingService.findAllPublic();
         return ResponseEntity.ok(trainings);
     }
 

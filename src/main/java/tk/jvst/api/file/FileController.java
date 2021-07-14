@@ -24,12 +24,12 @@ public class FileController {
 
     @GetMapping("/images")
     public ResponseEntity<List<File>> findAllImages() {
-        return ResponseEntity.ok().body(service.findAllByType(FileTypes.IMAGES));
+        return ResponseEntity.ok().body(service.findAllByType(FileTypes.getImageTypes()));
     }
 
     @GetMapping("/videos")
     public ResponseEntity<List<File>> findAllVideos() {
-        return ResponseEntity.ok().body(service.findAllByType(FileTypes.VIDEOS));
+        return ResponseEntity.ok().body(service.findAllByType(FileTypes.getVideoTypes()));
     }
 
     @PostMapping("/upload")

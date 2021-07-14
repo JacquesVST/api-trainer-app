@@ -48,6 +48,10 @@ public class TrainingService extends BaseService<Training> {
         return this.trainingRepository.findAllByCreator(creator);
     }
 
+    public List<Training> findAllPublic() {
+        return findAll().stream().filter(training -> Objects.nonNull(training.getPublished())).collect(Collectors.toList());
+    }
+
     public Training persistTraining(TrainingRequestDTO trainingRequestDTO) {
         return save(trainingRequestDTO.toModel());
     }
