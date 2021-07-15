@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import tk.jvst.api.generic.BaseRepository;
 import tk.jvst.api.generic.BaseService;
+import tk.jvst.api.util.FileUtilities;
 
 import java.util.Arrays;
 import java.util.List;
@@ -26,7 +27,7 @@ public class FileService extends BaseService<File> {
     }
 
     public List<File> uploadFiles(MultipartFile[] mpFiles) {
-        List<File> files = Arrays.stream(mpFiles).map(File::fromMultipartFile).collect(Collectors.toList());
+        List<File> files = Arrays.stream(mpFiles).map(FileUtilities::fromMultipartFile).collect(Collectors.toList());
         return saveAll(files);
     }
 

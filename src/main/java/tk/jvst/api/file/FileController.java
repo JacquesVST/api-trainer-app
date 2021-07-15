@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import tk.jvst.api.util.FileUtilities;
 import tk.jvst.api.util.literals.FileTypes;
 
 import java.util.List;
@@ -34,7 +35,7 @@ public class FileController {
 
     @PostMapping("/upload")
     public ResponseEntity<File> persistFile(@RequestParam("file") MultipartFile file) {
-        return ResponseEntity.ok(service.save(File.fromMultipartFile(file)));
+        return ResponseEntity.ok(service.save(FileUtilities.fromMultipartFile(file)));
     }
 
     @PostMapping("/uploads")
