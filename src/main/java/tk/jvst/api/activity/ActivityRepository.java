@@ -8,4 +8,6 @@ import java.util.List;
 public interface ActivityRepository extends BaseRepository<Activity> {
 
     List<Activity> findAllByTraining(Training training);
+
+    Long countByTraining(Training training);
 }

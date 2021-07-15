@@ -19,7 +19,7 @@ import javax.persistence.Table;
 @Data
 @Entity
 @Table(name = "activity")
-public class Activity extends BaseEntity {
+public class Activity extends BaseEntity implements Comparable<Activity> {
 
     private Integer duration;
     private Integer repeats;
@@ -32,4 +32,10 @@ public class Activity extends BaseEntity {
     @ManyToOne(targetEntity = Training.class)
     @JoinColumn(name = "training")
     private Training training;
+
+
+    @Override
+    public int compareTo(Activity o) {
+        return this.getSequentialOrder().compareTo(o.getSequentialOrder());
+    }
 }
