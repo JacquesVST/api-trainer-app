@@ -37,7 +37,7 @@ public class UserLibraryService extends BaseService<UserLibrary> {
     public UserLibrary preProcess(UserLibrary obj) {
         obj.setEndUser(userService.findById(obj.getEndUser().getId()));
         obj.setTraining(trainingService.findById(obj.getTraining().getId()));
-        if (Objects.isNull(obj.getObtained())){
+        if (Objects.isNull(obj.getObtained())) {
             obj.setObtained(Timestamp.valueOf(LocalDateTime.now()));
         }
         return obj;
@@ -46,24 +46,25 @@ public class UserLibraryService extends BaseService<UserLibrary> {
     public UserLibrary persistUserLibrary(UserLibraryRequestDTO userLibraryRequestDTO) {
         User user = userService.findById(userLibraryRequestDTO.getUserId());
         Training training = trainingService.findById(userLibraryRequestDTO.getTrainingId());
-        if (userLibraryRepository.findByEndUserAndTraining(user, training).isPresent()){
-            throw new DuplicateKeyException(Validation.USER_LIBRARY_EXISTS);
+        if (Objects.isNull(userLibraryRequestDTO.getId())) {
+            if (userLibraryRepository.findByEndUserAndTraining(user, training).isPresent()) {
+                throw new DuplicateKeyException(Validation.USER_LIBRARY_EXISTS);
+            }
         }
         return save(userLibraryRequestDTO.toModel());
     }
 
-    public List<UserLibrary> findAllByUser(Long userId){
+    public List<UserLibrary> findAllByUser(Long userId) {
         return userLibraryRepository.findAllByEndUser(userService.findById(userId));
     }
 
-    public List<UserLibrary> findAllByTraining(Long trainingId){
+    public List<UserLibrary> findAllByTraining(Long trainingId) {
         return userLibraryRepository.findAllByTraining(trainingService.findById(trainingId));
     }
 
-    public UserLibrary findByEndUserAndTraining(Long userId, Long trainingId){
+    public UserLibrary findByEndUserAndTraining(Long userId, Long trainingId) {
         return userLibraryRepository.findByEndUserAndTraining(userService.findById(userId), trainingService.findById(trainingId)).orElse(null);
     }
-
 
 
 }

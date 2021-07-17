@@ -19,8 +19,8 @@ public class UserLibraryController {
     private UserLibraryService service;
 
     @GetMapping
-    public ResponseEntity<List<UserLibrary>> findAll() {
-        return ResponseEntity.ok(service.findAll());
+    public ResponseEntity<UserLibrary> findById(@RequestParam Long userLibraryId) {
+        return ResponseEntity.ok(service.findById(userLibraryId));
     }
 
     @PostMapping
