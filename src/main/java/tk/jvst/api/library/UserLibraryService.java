@@ -14,6 +14,7 @@ import tk.jvst.api.util.literals.Validation;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -46,16 +47,16 @@ public class UserLibraryService extends BaseService<UserLibrary> {
     public UserLibrary persistUserLibrary(UserLibraryRequestDTO userLibraryRequestDTO) {
         User user = userService.findById(userLibraryRequestDTO.getUserId());
         Training training = trainingService.findById(userLibraryRequestDTO.getTrainingId());
-        if (Objects.isNull(userLibraryRequestDTO.getId())) {
-            if (userLibraryRepository.findByEndUserAndTraining(user, training).isPresent()) {
-                throw new DuplicateKeyException(Validation.USER_LIBRARY_EXISTS);
-            }
+        if (Objects.isNull(userLibraryRequestDTO.getId()) && userLibraryRepository.findByEndUserAndTraining(user, training).isPresent()) {
+            throw new DuplicateKeyException(Validation.USER_LIBRARY_EXISTS);
         }
         return save(userLibraryRequestDTO.toModel());
     }
 
     public List<UserLibrary> findAllByUser(Long userId) {
-        return userLibraryRepository.findAllByEndUser(userService.findById(userId));
+        List<UserLibrary> userLibraries = userLibraryRepository.findAllByEndUser(userService.findById(userId));
+        Collections.sort(userLibraries);
+        return userLibraries;
     }
 
     public List<UserLibrary> findAllByTraining(Long trainingId) {

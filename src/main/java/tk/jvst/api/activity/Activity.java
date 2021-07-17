@@ -33,7 +33,6 @@ public class Activity extends BaseEntity implements Comparable<Activity> {
     @JoinColumn(name = "training")
     private Training training;
 
-
     @Override
     public int compareTo(Activity o) {
         return this.getSequentialOrder().compareTo(o.getSequentialOrder());
