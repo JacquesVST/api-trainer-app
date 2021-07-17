@@ -12,7 +12,10 @@ import tk.jvst.api.user.User;
 import tk.jvst.api.user.UserService;
 import tk.jvst.api.util.literals.Validation;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class UserLibraryService extends BaseService<UserLibrary> {
@@ -34,6 +37,9 @@ public class UserLibraryService extends BaseService<UserLibrary> {
     public UserLibrary preProcess(UserLibrary obj) {
         obj.setEndUser(userService.findById(obj.getEndUser().getId()));
         obj.setTraining(trainingService.findById(obj.getTraining().getId()));
+        if (Objects.isNull(obj.getObtained())){
+            obj.setObtained(Timestamp.valueOf(LocalDateTime.now()));
+        }
         return obj;
     }
 
@@ -52,6 +58,10 @@ public class UserLibraryService extends BaseService<UserLibrary> {
 
     public List<UserLibrary> findAllByTraining(Long trainingId){
         return userLibraryRepository.findAllByTraining(trainingService.findById(trainingId));
+    }
+
+    public UserLibrary findByEndUserAndTraining(Long userId, Long trainingId){
+        return userLibraryRepository.findByEndUserAndTraining(userService.findById(userId), trainingService.findById(trainingId)).orElse(null);
     }
 
 

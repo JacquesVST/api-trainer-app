@@ -37,4 +37,9 @@ public class UserLibraryController {
     public ResponseEntity<List<UserLibrary>> findAllByTraining(@RequestParam Long trainingId){
         return ResponseEntity.ok(service.findAllByTraining(trainingId));
     }
+
+    @GetMapping("/match")
+    public ResponseEntity<UserLibrary> findByEndUserAndTraining(@RequestParam Long userId, @RequestParam Long trainingId){
+        return ResponseEntity.ok(service.findByEndUserAndTraining(userId, trainingId));
+    }
 }
