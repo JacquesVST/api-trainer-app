@@ -8,6 +8,9 @@ import tk.jvst.api.generic.BaseRepository;
 import tk.jvst.api.generic.BaseService;
 import tk.jvst.api.util.literals.Validation;
 
+import java.util.Collections;
+import java.util.List;
+
 @Service
 public class TagService extends BaseService<Tag> {
 
@@ -18,11 +21,17 @@ public class TagService extends BaseService<Tag> {
     @Autowired
     public TagRepository tagRepository;
 
-    public Tag persistTag(Tag tag){
-        if(tagRepository.findByDescription(tag.getDescription()).isPresent()){
+    public Tag persistTag(Tag tag) {
+        if (tagRepository.findByDescriptionIgnoreCase(tag.getDescription()).isPresent()) {
             throw new DuplicateKeyException(Validation.TAG_EXISTS);
         }
         return save(tag);
+    }
+
+    public List<Tag> findAllSorted() {
+        List<Tag> tags = findAll();
+        Collections.sort(tags);
+        return tags;
     }
 
 }

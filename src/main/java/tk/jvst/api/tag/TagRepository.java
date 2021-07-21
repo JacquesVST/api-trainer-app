@@ -6,5 +6,5 @@ import java.util.Optional;
 
 public interface TagRepository extends BaseRepository<Tag> {
 
-    Optional<Tag> findByDescription(String description);
+    Optional<Tag> findByDescriptionIgnoreCase(String description);
 }

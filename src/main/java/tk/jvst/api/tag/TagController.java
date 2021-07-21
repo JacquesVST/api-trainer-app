@@ -18,12 +18,18 @@ public class TagController {
 
     @GetMapping
     public ResponseEntity<List<Tag>> findAll() {
-        return ResponseEntity.ok(service.findAll());
+        return ResponseEntity.ok(service.findAllSorted());
     }
 
     @PostMapping
-    public ResponseEntity<Tag> persistTag(@RequestBody Tag tag){
+    public ResponseEntity<Tag> persistTag(@RequestBody Tag tag) {
         return ResponseEntity.status(HttpStatus.CREATED).body(service.persistTag(tag));
+    }
+
+    @DeleteMapping
+    public ResponseEntity<Void> deleteTag(@RequestParam Long tagId) {
+        service.deleteById(tagId);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
 }
