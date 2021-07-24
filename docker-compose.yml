@@ -1,0 +1,41 @@
+version: '3'
+
+networks:
+  postgres:
+    driver: bridge
+
+services:
+
+  postgres:
+    image: postgres:latest
+    container_name: postgres
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: 1001
+    networks:
+      - postgres
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: pgadimin
+    restart: always
+    ports:
+      - 15432:80
+    environment:
+      PGADMIN_DEFAULT_EMAIL: jacquesvst@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: 1001
+    networks:
+      - postgres
+
+  api:
+    image: 'api'
+    build: .
+    container_name: api
+    depends_on:
+      - postgres
+    ports:
+      - 8080:8080
+    networks:
+      - postgres
