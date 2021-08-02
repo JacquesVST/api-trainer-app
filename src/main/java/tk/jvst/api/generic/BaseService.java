@@ -34,10 +34,6 @@ public abstract class BaseService<T extends BaseEntity> {
         return repository.save(preProcess(entity));
     }
 
-    public void delete(T entity) {
-        repository.delete(entity);
-    }
-
     public void deleteById(Long id) {
         repository.deleteById(id);
     }
