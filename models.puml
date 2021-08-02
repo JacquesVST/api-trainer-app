@@ -1,0 +1,82 @@
+@startuml
+package tk.jvst.api{
+class BaseEntity {
+- {static} long serialVersionUID
+- Long id
+}
+class Activity {
+- Integer duration
+- Integer repeats
+- Integer sets
+- String comments
+- Integer sequentialOrder
+- Exercise exercise
+- Training training
+}
+class Tag {
+- String description
+- String color
+}
+class UserLibrary {
+- User user
+- Training training
+- Timestamp obtained
+- Boolean favorite
+}
+class File {
+- String url
+- Long size
+- String uuid
+- Timestamp uploadDate
+- String name
+- String originalName
+- String type
+- byte[] data
+}
+class User {
+- String username
+- String pass
+- String firstName
+- String lastName
+- String email
+- String phoneNumber
+- Timestamp birth
+- UserType type
+- boolean active
+- File picture
+}
+class Exercise {
+- String title
+- String description
+- String material
+- User creator
+- List<File> files
+- List<Tag> tags
+}
+class Session {
+- Integer duration
+- Timestamp start
+- Timestamp finish
+- String observations
+- UserLibrary userLibrary
+}
+class Training {
+- String title
+- String description
+- BigDecimal price
+- Integer duration
+- Timestamp published
+- User creator
+- File picture
+- List<Tag> tags
+}
+}
+BaseEntity <|-l- Activity
+BaseEntity <|-d- Tag
+BaseEntity <|-d- UserLibrary
+BaseEntity <|-u- File
+BaseEntity <|-u- User
+BaseEntity <|-r- Exercise
+BaseEntity <|-d- Session
+BaseEntity <|-u- Training
+@enduml
