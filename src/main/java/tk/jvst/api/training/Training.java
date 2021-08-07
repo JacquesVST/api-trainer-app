@@ -35,5 +35,6 @@ public class Training extends BaseEntity {
     private File picture;
     @ManyToMany(targetEntity = Tag.class)
     private List<Tag> tags;
+    private String code;
 
 }

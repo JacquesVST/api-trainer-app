@@ -35,6 +35,12 @@ public class TrainingController {
         return ResponseEntity.ok(training);
     }
 
+    @GetMapping("/code")
+    public ResponseEntity<Training> findTrainingById(@RequestParam String code) {
+        Training training = this.trainingService.findByCode(code);
+        return ResponseEntity.ok(training);
+    }
+
     @PostMapping
     public ResponseEntity<Training> persistTraining(@RequestBody TrainingRequestDTO trainingRequestDTO) {
         Training training = this.trainingService.persistTraining(trainingRequestDTO);
