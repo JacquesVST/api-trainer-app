@@ -29,6 +29,8 @@ public class Session extends BaseEntity {
 
     private String observations;
 
+    private boolean sent;
+
     @ManyToOne(targetEntity = UserLibrary.class)
     @JoinColumn(name = "userLibrary")
     private UserLibrary userLibrary;

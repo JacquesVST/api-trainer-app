@@ -2,8 +2,12 @@ package tk.jvst.api.session;
 
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import tk.jvst.api.session.dto.SessionRequestDTO;
+
+import java.util.List;
 
 @Api(value = "Session", tags = {"Session"})
 @RestController
@@ -12,5 +16,21 @@ public class SessionController {
 
     @Autowired
     private SessionService sessionService;
+
+    @GetMapping("/user")
+    public ResponseEntity<List<Session>> findAllByUser(@RequestParam Long userId) {
+        return ResponseEntity.ok(sessionService.findAllByUser(userId));
+    }
+
+    @GetMapping("/creator")
+    public ResponseEntity<List<Session>> findAllByCreator(@RequestParam Long creatorId) {
+        return ResponseEntity.ok(sessionService.findAllByCreator(creatorId));
+    }
+
+    @PostMapping
+    public ResponseEntity<Session> persistSession(@RequestBody SessionRequestDTO sessionRequestDTO) {
+        Session session = this.sessionService.persistSession(sessionRequestDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).body(session);
+    }
 
 }
