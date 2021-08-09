@@ -15,6 +15,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Service
 public class SessionService extends BaseService<Session> {
@@ -60,7 +61,7 @@ public class SessionService extends BaseService<Session> {
         for (Training training : trainings) {
             userLibraries.addAll(userLibraryService.findAllByTraining(training.getId()));
         }
-        return this.sessionRepository.findByUserLibraryIn(userLibraries);
+        return this.sessionRepository.findByUserLibraryIn(userLibraries).stream().filter(Session::isSent).collect(Collectors.toList());
     }
 
 }
