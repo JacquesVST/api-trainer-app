@@ -19,7 +19,6 @@ import java.util.Locale;
 public class Tag extends BaseEntity implements Comparable<Tag> {
 
     private String description;
-
     private String color;
 
     @Override

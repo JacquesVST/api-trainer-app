@@ -30,9 +30,7 @@ public class UserLibrary extends BaseEntity implements Comparable<UserLibrary>{
     @ManyToOne(targetEntity = Training.class)
     @JoinColumn(name = "training")
     private Training training;
-
     private Timestamp obtained;
-
     private Boolean favorite;
 
     @Override

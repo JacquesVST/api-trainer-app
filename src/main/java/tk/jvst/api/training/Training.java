@@ -27,12 +27,16 @@ public class Training extends BaseEntity {
     private BigDecimal price;
     private Integer duration;
     private Timestamp published;
+
     @ManyToOne(targetEntity = User.class)
     @JoinColumn(name = "creator")
     private User creator;
+
+    @JsonIgnoreProperties("data")
     @ManyToOne(targetEntity = File.class)
     @JoinColumn(name = "picture")
     private File picture;
+
     @ManyToMany(targetEntity = Tag.class)
     private List<Tag> tags;
     private String code;

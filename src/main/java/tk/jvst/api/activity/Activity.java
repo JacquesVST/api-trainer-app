@@ -26,9 +26,11 @@ public class Activity extends BaseEntity implements Comparable<Activity> {
     private Integer sets;
     private String comments;
     private Integer sequentialOrder;
+
     @ManyToOne(targetEntity = Exercise.class)
     @JoinColumn(name = "exercise")
     private Exercise exercise;
+
     @ManyToOne(targetEntity = Training.class)
     @JoinColumn(name = "training")
     private Training training;

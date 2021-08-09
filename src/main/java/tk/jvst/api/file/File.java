@@ -28,6 +28,7 @@ public class File extends BaseEntity {
     @Column(name = "upload_date")
     private Timestamp uploadDate;
     private String name;
+
     @Column(name = "original_name")
     private String originalName;
     private String type;

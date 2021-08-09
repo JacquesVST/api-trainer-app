@@ -17,6 +17,11 @@ public class SessionController {
     @Autowired
     private SessionService sessionService;
 
+    @GetMapping()
+    public ResponseEntity<Session> findById(@RequestParam Long sessionId) {
+        return ResponseEntity.ok(sessionService.findById(sessionId));
+    }
+
     @GetMapping("/user")
     public ResponseEntity<List<Session>> findAllByUser(@RequestParam Long userId) {
         return ResponseEntity.ok(sessionService.findAllByUser(userId));
@@ -31,6 +36,12 @@ public class SessionController {
     public ResponseEntity<Session> persistSession(@RequestBody SessionRequestDTO sessionRequestDTO) {
         Session session = this.sessionService.persistSession(sessionRequestDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(session);
+    }
+
+    @DeleteMapping
+    public ResponseEntity<Void> deleteSession(@RequestParam Long sessionId) {
+        this.sessionService.deleteById(sessionId);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
 }

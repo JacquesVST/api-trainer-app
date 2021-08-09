@@ -22,13 +22,9 @@ import java.sql.Timestamp;
 public class Session extends BaseEntity {
 
     private Integer duration;
-
     private Timestamp start;
-
     private Timestamp finish;
-
     private String observations;
-
     private boolean sent;
 
     @ManyToOne(targetEntity = UserLibrary.class)

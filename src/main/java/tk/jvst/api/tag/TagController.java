@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import tk.jvst.api.tag.dto.TagRequestDTO;
 
 import java.util.List;
 
@@ -22,8 +23,8 @@ public class TagController {
     }
 
     @PostMapping
-    public ResponseEntity<Tag> persistTag(@RequestBody Tag tag) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(service.persistTag(tag));
+    public ResponseEntity<Tag> persistTag(@RequestBody TagRequestDTO tagRequestDTO) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(service.persistTag(tagRequestDTO.toModel()));
     }
 
     @DeleteMapping

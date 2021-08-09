@@ -23,11 +23,14 @@ public class Exercise extends BaseEntity {
     private String title;
     private String description;
     private String material;
+
     @ManyToOne(targetEntity = User.class)
     @JoinColumn(name = "creator")
     private User creator;
+
     @ManyToMany(targetEntity = File.class)
     private List<File> files;
+
     @ManyToMany(targetEntity = Tag.class)
     private List<Tag> tags;
 }

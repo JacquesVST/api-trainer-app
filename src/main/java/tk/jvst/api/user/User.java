@@ -1,5 +1,6 @@
 package tk.jvst.api.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -19,7 +20,6 @@ import java.sql.Timestamp;
 public class User extends BaseEntity {
 
     private String username;
-
     private String pass;
 
     @Column(name = "first_name")
@@ -27,19 +27,17 @@ public class User extends BaseEntity {
 
     @Column(name = "last_name")
     private String lastName;
-
     private String email;
 
     @Column(name = "phone_number")
     private String phoneNumber;
-
     private Timestamp birth;
 
     @Enumerated(EnumType.STRING)
     private UserType type;
-
     private boolean active;
 
+    @JsonIgnoreProperties("data")
     @ManyToOne(targetEntity = File.class)
     @JoinColumn(name = "picture")
     private File picture;
