@@ -30,13 +30,17 @@ public class UserController {
 
     @PostMapping("/login")
     public ResponseEntity<User> login(@RequestBody LoginDTO loginDTO) {
-        User user = service.login(loginDTO);
-        return ResponseEntity.status(HttpStatus.OK).body(user);
+        return ResponseEntity.status(HttpStatus.OK).body(service.login(loginDTO));
     }
 
     @PostMapping("/check-username")
     public ResponseEntity<Boolean> checkUsernameAvailability(@RequestBody String username) {
         return ResponseEntity.status(HttpStatus.OK).body(service.checkUsernameAvailability(username));
+    }
+
+    @GetMapping("/modify-user-type")
+    public ResponseEntity<User> modifyUserType(@RequestParam Long userId) {
+        return ResponseEntity.status(HttpStatus.OK).body(service.modifyUserType(userId));
     }
 
 }

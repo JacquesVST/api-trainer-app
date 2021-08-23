@@ -42,14 +42,21 @@ public class UserService extends BaseService<User> {
         if (user.isPresent()) {
             if (HashUtilities.stringToSha256(loginDTO.getPass()).equals(user.get().getPass())) {
                 return user.get();
+            } else {
+                throw new SecurityException();
             }
         } else {
             throw new EmptyResultDataAccessException(1);
         }
-        return null;
     }
 
     public Boolean checkUsernameAvailability(String username) {
         return userRepository.findByUsername(username).isEmpty();
+    }
+
+    public User modifyUserType(Long userId){
+        User user = findById(userId);
+        user.setType(user.getType().equals(UserType.GYM_STUDENT) ? UserType.TRAINER : UserType.GYM_STUDENT);
+        return save(user);
     }
 }

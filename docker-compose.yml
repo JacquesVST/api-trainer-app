@@ -30,7 +30,6 @@ services:
       - trainer
 
   api:
-    image: 'api'
     build: .
     container_name: api
     environment:
