@@ -34,6 +34,7 @@ services:
     container_name: api
     environment:
       - DATABASE_HOST=postgres
+      - DATABASE_PASSWORD=1001
     depends_on:
       - postgres
     ports:
