@@ -50,7 +50,7 @@ public class TrainingService extends BaseService<Training> {
             } while (trainingRepository.findByCode(code).isPresent());
             obj.setCode(code);
         }
-        obj.setTags((obj.getTags().stream().map(tag -> tagService.findById(tag.getId())).collect(Collectors.toList())));
+        obj.setTags(obj.getTags().stream().map(tag -> tagService.findById(tag.getId())).collect(Collectors.toList()));
         return obj;
     }
 

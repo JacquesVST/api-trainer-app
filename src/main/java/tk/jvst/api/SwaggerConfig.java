@@ -14,13 +14,13 @@ import java.sql.Timestamp;
 @Configuration
 @EnableSwagger2
 public class SwaggerConfig {
-
     @Bean
     public Docket productApi() {
         return new Docket(DocumentationType.SWAGGER_2).select()
                 .apis(RequestHandlerSelectors.basePackage("tk.jvst.api")).build()
                 .tags(
                         new Tag("Activity", Documentation.ACTIVITY_TAG_DESCRIPTION),
+                        new Tag("Comment", Documentation.COMMENT_TAG_DESCRIPTION),
                         new Tag("Exercise", Documentation.EXERCISE_TAG_DESCRIPTION),
                         new Tag("File", Documentation.FILE_TAG_DESCRIPTION),
                         new Tag("Session", Documentation.SESSION_TAG_DESCRIPTION),

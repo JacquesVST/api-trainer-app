@@ -6,6 +6,7 @@ public class Documentation {
     }
 
     public static final String ACTIVITY_TAG_DESCRIPTION = "Operations related to activities";
+    public static final String COMMENT_TAG_DESCRIPTION = "Operations related to comments in sessions";
     public static final String EXERCISE_TAG_DESCRIPTION = "Operations related to exercises";
     public static final String FILE_TAG_DESCRIPTION = "Operations related to any media file";
     public static final String SESSION_TAG_DESCRIPTION = "Operations related to sessions of an user";

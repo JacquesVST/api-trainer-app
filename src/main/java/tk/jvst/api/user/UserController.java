@@ -19,6 +19,11 @@ public class UserController {
     private UserService service;
 
     @GetMapping
+    public ResponseEntity<User> findById(@RequestParam Long userId) {
+        return ResponseEntity.status(HttpStatus.OK).body(service.findById(userId));
+    }
+
+    @GetMapping("/all")
     public ResponseEntity<List<User>> findAll() {
         return ResponseEntity.ok(service.findAll());
     }
@@ -26,6 +31,11 @@ public class UserController {
     @PostMapping
     public ResponseEntity<User> registerUser(@RequestBody UserRequestDTO userRequestDTO) {
         return ResponseEntity.status(HttpStatus.CREATED).body(service.registerUser(userRequestDTO));
+    }
+
+    @PutMapping
+    public ResponseEntity<User> updateUser(@RequestBody UserRequestDTO userRequestDTO) {
+        return ResponseEntity.status(HttpStatus.OK).body(service.updateUser(userRequestDTO));
     }
 
     @PostMapping("/login")
