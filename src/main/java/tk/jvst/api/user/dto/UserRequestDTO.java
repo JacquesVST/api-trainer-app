@@ -4,8 +4,8 @@ import lombok.Data;
 import tk.jvst.api.file.File;
 import tk.jvst.api.user.User;
 import tk.jvst.api.user.UserType;
-import tk.jvst.api.util.DateTimeUtilities;
 
+import java.sql.Timestamp;
 import java.util.Objects;
 
 @Data
@@ -18,7 +18,7 @@ public class UserRequestDTO {
     private String lastName;
     private String email;
     private String phoneNumber;
-    private String birth;
+    private Timestamp birth;
     private UserType type;
     private Long pictureId;
 
@@ -36,7 +36,7 @@ public class UserRequestDTO {
                 .lastName(lastName)
                 .email(email)
                 .phoneNumber(phoneNumber)
-                .birth(DateTimeUtilities.stringDateToTimestamp(birth))
+                .birth(birth)
                 .type(type)
                 .active(true)
                 .picture(picture)
