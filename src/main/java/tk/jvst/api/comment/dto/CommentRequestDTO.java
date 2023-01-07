@@ -7,6 +7,7 @@ import tk.jvst.api.session.Session;
 import tk.jvst.api.user.User;
 
 import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.Objects;
 
 @Data
@@ -14,7 +15,6 @@ public class CommentRequestDTO {
 
     private Long id;
     private String text;
-    private Timestamp posted;
     private Long authorId;
     private Long sessionId;
     private Long mediaId;
@@ -28,7 +28,7 @@ public class CommentRequestDTO {
         return Comment.builder()
                 .id(id)
                 .text(text)
-                .posted(posted)
+                .posted(Timestamp.from(Instant.now()))
                 .author(User.builder().id(authorId).build())
                 .session(Session.builder().id(sessionId).build())
                 .media(media)
